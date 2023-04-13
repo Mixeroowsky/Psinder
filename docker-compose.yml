@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  psinder.api:
+    image: ${DOCKER_REGISTRY-}psinderapi
+    build:
+      context: .
+      dockerfile: Psinder.Api\Dockerfile
