@@ -1233,23 +1233,6 @@
             "rid": "win"
           }
         }
-      },
-      "Psinder.webapp/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "7.0.5",
-          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.17.0"
-        },
-        "compile": {
-          "bin/placeholder/Psinder.webapp.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Psinder.webapp.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
       }
     }
   },
@@ -3966,11 +3949,6 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
-    },
-    "Psinder.webapp/1.0.0": {
-      "type": "project",
-      "path": "../Psinder.webapp/Psinder.webapp.csproj",
-      "msbuildProject": "../Psinder.webapp/Psinder.webapp.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3980,7 +3958,6 @@
       "Microsoft.EntityFrameworkCore.Design >= 7.0.5",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.5",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.17.0",
-      "Psinder.webapp >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -4010,11 +3987,7 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {
-            "C:\\Visual\\Psinder\\Psinder\\Psinder.webapp\\Psinder.webapp.csproj": {
-              "projectPath": "C:\\Visual\\Psinder\\Psinder\\Psinder.webapp\\Psinder.webapp.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

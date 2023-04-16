@@ -1,0 +1,25 @@
+﻿@using Psinder.Api.Models
+@model IEnumerable<Pet>
+<h2>@ViewData["Title"]</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Imie</th>
+            <th>Rodzaj zwierzęcia</th>
+            <th>Wiek</th>
+        </tr>
+    </thead>
+</table>
+<tbody>
+    @if (Model is not null)
+    {
+        @foreach (var pet in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => pet.Name)</td>
+                <td>@Html.DisplayFor(modelItem => pet.BreedType)</td>
+                <td>@Html.DisplayFor(modelItem => pet.Age)</td>
+            </tr>
+        }
+    }
+</tbody>

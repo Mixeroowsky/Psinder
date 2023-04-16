@@ -1,11 +1,12 @@
 using Psinder.Api.Models;
+using Psinder.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 using (PsinderContext _context = new())
 {
-    bool usuniete = await _context.Database.EnsureDeletedAsync();
-    Console.WriteLine($"Usuniêto bazê danych: {usuniete}");
+    //bool usuniete = await _context.Database.EnsureDeletedAsync();
+    //Console.WriteLine($"Usuniêto bazê danych: {usuniete}");
     bool utworzone = await _context.Database.EnsureCreatedAsync();
     Console.WriteLine($"Utworzono bazê danych: {utworzone}");
 }
@@ -16,6 +17,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
+builder.Services.AddTransient<IPetService, PetService>();
 
 var app = builder.Build();
 

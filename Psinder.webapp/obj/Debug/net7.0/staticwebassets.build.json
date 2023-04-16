@@ -1,11 +1,23 @@
 {
   "Version": 1,
-  "Hash": "w4DvEEg3zBWP7BwM4HLyiMAMO7RXKrvIUkQ3uqaPG3E=",
+  "Hash": "HOQPMxq0F4QvO2RebQcSBZu1PUphn9Zg8FrDJc+nVJM=",
   "Source": "Psinder.webapp",
   "BasePath": "_content/Psinder.webapp",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Visual\\Psinder\\Psinder\\Psinder.Api\\Psinder.Api.csproj",
+      "Version": 2,
+      "Source": "Psinder.Api",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
   "DiscoveryPatterns": [
     {
       "Name": "Psinder.webapp\\wwwroot",

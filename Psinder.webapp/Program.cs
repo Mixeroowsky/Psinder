@@ -1,7 +1,16 @@
+using System.Net.Http.Headers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient(name: "Psinder.Api", configureClient: options =>
+{
+    options.BaseAddress = new Uri("https://localhost:5003/");
+    options.DefaultRequestHeaders.Accept.Add(
+    new MediaTypeWithQualityHeaderValue(
+    "application/json", 1.0));
+});
 
 var app = builder.Build();
 

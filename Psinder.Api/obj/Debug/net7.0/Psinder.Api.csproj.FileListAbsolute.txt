@@ -31,13 +31,7 @@ C:\Visual\Psinder\Psinder\Psinder.Api\obj\Debug\net7.0\refint\Psinder.Api.dll
 C:\Visual\Psinder\Psinder\Psinder.Api\obj\Debug\net7.0\Psinder.Api.pdb
 C:\Visual\Psinder\Psinder\Psinder.Api\obj\Debug\net7.0\Psinder.Api.genruntimeconfig.cache
 C:\Visual\Psinder\Psinder\Psinder.Api\obj\Debug\net7.0\ref\Psinder.Api.dll
-C:\Visual\Psinder\Psinder\Psinder.Api\bin\Debug\net7.0\Psinder.webapp.deps.json
-C:\Visual\Psinder\Psinder\Psinder.Api\bin\Debug\net7.0\Psinder.webapp.runtimeconfig.json
-C:\Visual\Psinder\Psinder\Psinder.Api\bin\Debug\net7.0\Psinder.webapp.staticwebassets.runtime.json
-C:\Visual\Psinder\Psinder\Psinder.Api\bin\Debug\net7.0\Psinder.webapp.exe
 C:\Visual\Psinder\Psinder\Psinder.Api\bin\Debug\net7.0\Psinder.Api.staticwebassets.runtime.json
-C:\Visual\Psinder\Psinder\Psinder.Api\bin\Debug\net7.0\Psinder.webapp.dll
-C:\Visual\Psinder\Psinder\Psinder.Api\bin\Debug\net7.0\Psinder.webapp.pdb
 C:\Visual\Psinder\Psinder\Psinder.Api\bin\Debug\net7.0\Humanizer.dll
 C:\Visual\Psinder\Psinder\Psinder.Api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
 C:\Visual\Psinder\Psinder\Psinder.Api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
