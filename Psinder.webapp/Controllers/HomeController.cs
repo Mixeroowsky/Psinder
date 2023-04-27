@@ -20,7 +20,7 @@ namespace Psinder.webapp.Controllers
         {
             return View();
         }
-
+        [Route("privacy")]
         public IActionResult Privacy()
         {
             return View();

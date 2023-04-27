@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Psinder.Api.Models;
 using Psinder.Api.Services;
 
@@ -41,6 +42,31 @@ public class PetsController : ControllerBase
         {
             return NotFound(); // 404 Resource not found
         }
-        return Ok(p); // 200 OK with customer in body
+        return Ok(p); // 200 OK with pet in body
     }
+
+    [HttpPost]
+    public async Task<IActionResult> createPet(Pet pet)
+    {
+        return CreatedAtAction("GetUser", new { id = pet.PetId }, pet);
+    }
+
+    /*public async Task<IActionResult> DeleteUser(int id)
+    {
+        if (_context.Users == null)
+        {
+            return NotFound();
+        }
+        var user = await _context.Users.FindAsync(id);
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        _context.Users.Remove(user);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }*/
+
 }

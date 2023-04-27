@@ -4,11 +4,11 @@ namespace Psinder.Api.Models
 {
     public class PsinderContext : DbContext
     {
-       
+
         public PsinderContext()
         {
 
-        }        
+        }
         public PsinderContext(DbContextOptions<PsinderContext> options) : base(options)
         {
 
@@ -27,8 +27,8 @@ namespace Psinder.Api.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string path = Path.Combine(Environment.CurrentDirectory, "Psinder.db");
-            if (!File.Exists(path))
+           
+            if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Psinder;Integrated Security=true;TrustServerCertificate=True;");
             }

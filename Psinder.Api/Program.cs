@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Psinder.Api.Models;
 using Psinder.Api.Services;
 
@@ -13,6 +14,8 @@ using (PsinderContext _context = new())
 // Add services to the container.
 builder.WebHost.UseUrls("https://localhost:5003");
 builder.Services.AddControllers();
+builder.Services.AddDbContext<PsinderContext>(opt =>
+    opt.UseInMemoryDatabase("Psinder"));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
