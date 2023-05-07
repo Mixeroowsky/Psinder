@@ -46,7 +46,7 @@ namespace Psinder.webapp.Controllers
             );
             HttpResponseMessage response = await client.SendAsync(task);
             IEnumerable<Pet>? model = await response.Content.ReadFromJsonAsync<IEnumerable<Pet>>();
-            return View(model);
+            return View("~/Views/Pets/Index.cshtml",model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
