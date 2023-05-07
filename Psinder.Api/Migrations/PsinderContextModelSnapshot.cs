@@ -67,7 +67,15 @@ namespace Psinder.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShelterId"));
 
-                    b.Property<string>("Address")
+                    b.Property<int>("AppartementNumber")
+                        .HasMaxLength(999)
+                        .HasColumnType("int");
+
+                    b.Property<int>("BuldingNumber")
+                        .HasMaxLength(999)
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -79,7 +87,10 @@ namespace Psinder.Api.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Type")
+                    b.Property<string>("PostCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ShelterId");

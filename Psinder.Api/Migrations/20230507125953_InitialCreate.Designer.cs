@@ -12,8 +12,8 @@ using Psinder.Api.Models;
 namespace Psinder.Api.Migrations
 {
     [DbContext(typeof(PsinderContext))]
-    [Migration("20230507110640_CreateInitial")]
-    partial class CreateInitial
+    [Migration("20230507125953_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,7 +70,15 @@ namespace Psinder.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShelterId"));
 
-                    b.Property<string>("Address")
+                    b.Property<int>("AppartementNumber")
+                        .HasMaxLength(999)
+                        .HasColumnType("int");
+
+                    b.Property<int>("BuldingNumber")
+                        .HasMaxLength(999)
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -82,7 +90,10 @@ namespace Psinder.Api.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Type")
+                    b.Property<string>("PostCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ShelterId");
