@@ -1,16 +1,23 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
-<div class="container py-5">
-    <form method="post">
-        <div class="mb-3">
-            <label class="form-label">
-                Name
-            </label>
-            <input type="text" class="form-control" id="name" />
-        </div>
-    </form>
-</div>
+﻿@using Psinder.Api.Models
+@model IEnumerable<Shelter>
+<h2>@ViewData["Title"]</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nazwa schroniska</th>
+            <th>Miasto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model is not null)
+        {
+            @foreach (var shelter in Model)
+            {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => shelter.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => shelter.City)</td>
+                        </tr>
+            }
+        }
+    </tbody>
+</table>
