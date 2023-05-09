@@ -21,8 +21,16 @@ namespace Psinder.Api.Models
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>();
-            modelBuilder.Entity<Pet>().HasOne(s => s.Shelter);
-            modelBuilder.Entity<Shelter>().HasMany(p => p.Pets);
+            modelBuilder.Entity<Pet>()
+                .HasOne(p => p.Shelter)
+                .WithMany(p => p.Pets)
+                .HasForeignKey(s => s.ShelterId)
+                .IsRequired();
+            modelBuilder.Entity<Shelter>()
+                .HasMany(s => s.Pets)
+                .WithOne(s => s.Shelter)
+                .HasForeignKey(s => s.ShelterId)
+                .IsRequired();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

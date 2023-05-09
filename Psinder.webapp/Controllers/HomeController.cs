@@ -24,30 +24,7 @@ namespace Psinder.webapp.Controllers
         public IActionResult Privacy()
         {
             return View();
-        }
-
-        public async Task<IActionResult> Pets(string name)
-        {
-            string uri;
-            if (string.IsNullOrEmpty(name))
-            {
-                ViewData["Title"] = "Wszystkie zwierzęta";
-                uri = "pets/";
-            }
-            else
-            {
-                ViewData["Title"] = $"Zwierzęta o imieniu {name}";
-                uri = $"pets/?name={name}";
-            }
-            HttpClient client = clientFactory.CreateClient(name: "Psinder.Api");
-            HttpRequestMessage task = new(
-                method: HttpMethod.Get, 
-                requestUri: uri
-            );
-            HttpResponseMessage response = await client.SendAsync(task);
-            IEnumerable<Pet>? model = await response.Content.ReadFromJsonAsync<IEnumerable<Pet>>();
-            return View("~/Views/Pets/Index.cshtml",model);
-        }
+        }        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

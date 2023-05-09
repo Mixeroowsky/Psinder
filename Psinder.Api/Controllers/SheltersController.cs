@@ -9,7 +9,7 @@ using Psinder.Api.Models;
 
 namespace Psinder.Api.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class SheltersController : ControllerBase
     {

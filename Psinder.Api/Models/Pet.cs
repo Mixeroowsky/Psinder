@@ -20,7 +20,8 @@ namespace Psinder.Api.Models
         public Sex Sex { get; set; }
         public int Age { get; set; }
         public BreedType BreedType { get;set; }
-        public string? PhotoUrl { get; set; }        
-        public Shelter? Shelter { get; set; }
+        public string? PhotoUrl { get; set; }
+        public int ShelterId { get; set; }
+        public Shelter Shelter { get; set; } = null!;
     }
 }

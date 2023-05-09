@@ -9,17 +9,17 @@
             <th>Wiek</th>
         </tr>
     </thead>
-</table>
-<tbody>
-    @if (Model is not null)
-    {
-        @foreach (var pet in Model)
+    <tbody>
+        @if (Model is not null)
         {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => pet.Name)</td>
-                <td>@Html.DisplayFor(modelItem => pet.BreedType)</td>
-                <td>@Html.DisplayFor(modelItem => pet.Age)</td>
-            </tr>
+            @foreach (var pet in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => pet.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => pet.BreedType)</td>
+                    <td>@Html.DisplayFor(modelItem => pet.Age)</td>
+                </tr>
+            }
         }
-    }
-</tbody>
+    </tbody>
+</table>

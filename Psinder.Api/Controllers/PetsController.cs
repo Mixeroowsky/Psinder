@@ -9,7 +9,7 @@ using Psinder.Api.Models;
 
 namespace Psinder.Api.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class PetsController : ControllerBase
     {
@@ -22,25 +22,34 @@ namespace Psinder.Api.Controllers
 
         // GET: api/Pets
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Pet>>> GetPets()
+        public async Task<ActionResult<IEnumerable<Pet>>> GetPets(string? name)
         {
-          if (_context.Pets == null)
-          {
-              return NotFound();
-          }
-            return await _context.Pets.ToListAsync();
+            if (_context.Pets == null)
+            {
+                return NotFound();
+            }
+            if (string.IsNullOrEmpty(name))
+            {
+                return await _context.Pets.ToListAsync();
+            }
+            else
+            {
+                return Ok(await _context.Pets
+                           .Where(p => p.Name
+                           .Contains(name))
+                           .ToListAsync());
+            }            
         }
 
         // GET: api/Pets/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Pet>> GetPet(int id)
         {
-          if (_context.Pets == null)
-          {
-              return NotFound();
-          }
-            var pet = await _context.Pets
-                .Include(p => p.Shelter)
+            if (_context.Pets == null)
+            {
+                return NotFound();
+            }
+            var pet = await _context.Pets 
                 .FirstOrDefaultAsync(m => m.PetId == id); 
 
             if (pet == null)
@@ -89,7 +98,7 @@ namespace Psinder.Api.Controllers
         {
           if (_context.Pets == null)
           {
-              return Problem("Entity set 'PsinderContext.Pets'  is null.");
+              return Problem("Entity set 'PsinderContext.Pets' is null.");
           }
             _context.Pets.Add(pet);
             await _context.SaveChangesAsync();
