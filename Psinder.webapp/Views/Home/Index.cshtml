@@ -8,6 +8,19 @@
 </div>
 <h3>Nasze zwierzęta</h3>
 <form asp-action="Index" asp-controller="Pets" method="get">
-    <input name="name" placeholder="Wpisz imię" />
-    <input type="submit" />
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Imię zwierzaka" aria-label="Pet.name">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Szukaj</button>
+        </div>
+    </div>
 </form>
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>

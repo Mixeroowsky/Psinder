@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HOQPMxq0F4QvO2RebQcSBZu1PUphn9Zg8FrDJc+nVJM=",
+  "Hash": "xJD2r/cXD24d0/QeOlwyepQclSG65jtCkVIgFP0jnrU=",
   "Source": "Psinder.webapp",
   "BasePath": "_content/Psinder.webapp",
   "Mode": "Default",
@@ -78,6 +78,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Visual\\Psinder\\Psinder\\Psinder.webapp\\wwwroot\\dog.jpg",
+      "SourceId": "Psinder.webapp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Visual\\Psinder\\Psinder\\Psinder.webapp\\wwwroot\\",
+      "BasePath": "_content/Psinder.webapp",
+      "RelativePath": "dog.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\dog.jpg"
     },
     {
       "Identity": "C:\\Visual\\Psinder\\Psinder\\Psinder.webapp\\wwwroot\\favicon.ico",
@@ -1081,6 +1098,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Visual\\Psinder\\Psinder\\Psinder.webapp\\wwwroot\\logo.png",
+      "SourceId": "Psinder.webapp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Visual\\Psinder\\Psinder\\Psinder.webapp\\wwwroot\\",
+      "BasePath": "_content/Psinder.webapp",
+      "RelativePath": "logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\logo.png"
     }
   ]
 }

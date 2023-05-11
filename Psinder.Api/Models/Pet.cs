@@ -5,11 +5,11 @@ namespace Psinder.Api.Models
 {
     public enum Sex
     {
-        male, female
+        Samiec, Samica
     }
     public enum BreedType
     {
-        dog, cat, other
+        Pies, Kot, Inne
     }
     public class Pet
     {
@@ -19,7 +19,7 @@ namespace Psinder.Api.Models
         public string? Description { get; set; }
         public Sex Sex { get; set; }
         public int Age { get; set; }
-        public BreedType BreedType { get;set; }
+        public BreedType BreedType { get; set; }
         public string? PhotoUrl { get; set; }
         public int ShelterId { get; set; }
         public Shelter Shelter { get; set; } = null!;

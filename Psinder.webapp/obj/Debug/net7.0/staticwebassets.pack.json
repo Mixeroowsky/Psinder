@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Visual\\Psinder\\Psinder\\Psinder.webapp\\wwwroot\\dog.jpg",
+      "PackagePath": "staticwebassets\\dog.jpg"
+    },
+    {
       "Id": "C:\\Visual\\Psinder\\Psinder\\Psinder.webapp\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
@@ -243,6 +247,10 @@
     {
       "Id": "C:\\Visual\\Psinder\\Psinder\\Psinder.webapp\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Visual\\Psinder\\Psinder\\Psinder.webapp\\wwwroot\\logo.png",
+      "PackagePath": "staticwebassets\\logo.png"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Psinder.webapp.Microsoft.AspNetCore.StaticWebAssets.props",

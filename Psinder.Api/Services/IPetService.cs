@@ -4,6 +4,7 @@ namespace Psinder.Api.Services;
 
 public interface IPetService
 {
-    Task<IEnumerable<Pet>> ReadAll();
-    Task<Pet?> ReadPet(string id);
+    Task<List<Pet>> GetAllPets();
+    Task<Pet?> GetPetById(string id);
+    Task<List<Pet>> SearchPetByName(string name);
 }

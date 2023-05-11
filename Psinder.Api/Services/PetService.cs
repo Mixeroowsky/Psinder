@@ -1,25 +1,36 @@
-﻿using Psinder.Api.Models;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
+using Psinder.Api.Models;
 using System.Collections.Concurrent;
 
 namespace Psinder.Api.Services;
 
 public class PetService : IPetService
 {
+    private readonly PsinderContext _context;
     private static ConcurrentDictionary<string, Pet>? petsDictionary;
-    public Task<Pet?> ReadPet(string id)
+    public PetService(PsinderContext context)
     {
-        id = id.ToUpper();
+        _context = context;
+    }
+    public async Task<Pet?> GetPetById(string id)
+    {        
         if (petsDictionary is null)
         {
             return null!;
         }
         petsDictionary.TryGetValue(id, out Pet? p);
-        return Task.FromResult(p);
+        return await Task.FromResult(p);
     }
 
-    public Task<IEnumerable<Pet>> ReadAll()
+    public async Task<List<Pet>> GetAllPets()
     {
-        return Task.FromResult(petsDictionary is null ? Enumerable.Empty<Pet>() : petsDictionary.Values);
+        var pets = await _context.Pets.ToListAsync();
+        return pets;
+    }
+    public async Task<List<Pet>> SearchPetByName(string name)
+    {
+        return await _context.Pets.Where(p => p.Name.Contains(name)).ToListAsync();
     }
 }
 
