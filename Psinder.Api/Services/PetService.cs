@@ -8,19 +8,13 @@ namespace Psinder.Api.Services;
 public class PetService : IPetService
 {
     private readonly PsinderContext _context;
-    private static ConcurrentDictionary<string, Pet>? petsDictionary;
     public PetService(PsinderContext context)
     {
         _context = context;
     }
-    public async Task<Pet?> GetPetById(string id)
+    public async Task<Pet?> GetPetById(int id)
     {        
-        if (petsDictionary is null)
-        {
-            return null!;
-        }
-        petsDictionary.TryGetValue(id, out Pet? p);
-        return await Task.FromResult(p);
+        return await _context.Pets.Where(p => p.PetId== id).FirstOrDefaultAsync();
     }
 
     public async Task<List<Pet>> GetAllPets()

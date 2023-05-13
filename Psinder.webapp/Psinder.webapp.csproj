@@ -21,4 +21,8 @@
     <ProjectReference Include="..\Psinder.Api\Psinder.Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="react\dist\" />
+  </ItemGroup>
+
 </Project>

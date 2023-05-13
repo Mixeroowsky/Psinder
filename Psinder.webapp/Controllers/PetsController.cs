@@ -17,12 +17,12 @@ namespace Psinder.webapp.Controllers
             if (string.IsNullOrEmpty(name))
             {
                 ViewData["Title"] = "Wszystkie zwierzęta";
-                uri = "/Pets/GetPets/";
+                uri = "/Pets/GetAllPets/";
             }
             else
             {
                 ViewData["Title"] = $"Zwierzęta o imieniu {name}";
-                uri = $"/Pets/GetPets/?name={name}";
+                uri = $"/Pets/SearchPetByName?name={name}";
             }
             HttpClient client = _clientFactory.CreateClient(name: "Psinder.Api");
             HttpRequestMessage task = new(
@@ -30,7 +30,7 @@ namespace Psinder.webapp.Controllers
                 requestUri: uri
             );
             HttpResponseMessage response = await client.SendAsync(task);
-            IEnumerable<Pet>? model = await response.Content.ReadFromJsonAsync<IEnumerable<Pet>>();
+            List<Pet>? model = await response.Content.ReadFromJsonAsync<List<Pet>>();
             return View(model);
             
         }

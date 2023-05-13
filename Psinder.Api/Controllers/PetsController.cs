@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Psinder.Api.Models;
-using Psinder.Api.Repositories;
 using Psinder.Api.Services;
 
 namespace Psinder.Api.Controllers
@@ -44,7 +43,7 @@ namespace Psinder.Api.Controllers
 
         // GET: api/Pets/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Pet>> GetPetById(string id)
+        public async Task<ActionResult<Pet>> GetPetById(int id)
         {
             return await _petService.GetPetById(id);            
         }
