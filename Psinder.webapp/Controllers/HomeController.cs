@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Psinder.Api.Data;
 using Psinder.Api.Models;
 using System.Diagnostics;
 using System.Net.Http;

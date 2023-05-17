@@ -1,4 +1,4 @@
-﻿using Psinder.Api.Models;
+﻿using Psinder.Api.Data;
 using System.Collections.Concurrent;
 
 namespace Psinder.Api.Services

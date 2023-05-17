@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Psinder.Api.Models;
+using Psinder.Api.Data;
 
 namespace Psinder.Api.Controllers
 {

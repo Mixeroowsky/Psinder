@@ -1,4 +1,4 @@
-﻿namespace Psinder.Api.Models
+﻿namespace Psinder.Api.Data
 {
     public class User
     {

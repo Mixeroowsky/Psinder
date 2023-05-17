@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
-using Psinder.Api.Models;
+using Psinder.Api.Data;
 using Psinder.Api.Services;
 
 namespace Psinder.Api.Controllers

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Psinder.Api.Models;
+using Psinder.Api.Data;
 
 namespace Psinder.webapp.Controllers
 {

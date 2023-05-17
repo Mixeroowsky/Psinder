@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Psinder.Api.Models;
+using Psinder.Api.Data;
 using System.Threading.Tasks;
 
 namespace Psinder.webapp.Controllers

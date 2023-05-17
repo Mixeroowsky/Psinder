@@ -1,4 +1,4 @@
-﻿using Psinder.Api.Models;
+﻿using Psinder.Api.Data;
 
 namespace Psinder.Api.Services;
 

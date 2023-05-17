@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Psinder.Api.Models;
+using Psinder.Api.Data;
 using Psinder.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
