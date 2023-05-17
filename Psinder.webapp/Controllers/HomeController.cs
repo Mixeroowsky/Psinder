@@ -8,17 +8,27 @@ namespace Psinder.webapp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IHttpClientFactory clientFactory;
+        private readonly IHttpClientFactory _clientFactory;
 
         public HomeController(ILogger<HomeController> logger, IHttpClientFactory httpClientFactory)
         {
             _logger = logger;
-            clientFactory = httpClientFactory;
+            _clientFactory = httpClientFactory;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            string uri;
+            ViewData["Title"] = "Wszystkie zwierzęta";
+            uri = "/Pets/GetAllPets/";            
+            HttpClient client = _clientFactory.CreateClient(name: "Psinder.Api");
+            HttpRequestMessage task = new(
+                method: HttpMethod.Get,
+                requestUri: uri
+            );
+            HttpResponseMessage response = await client.SendAsync(task);
+            List<Pet>? model = await response.Content.ReadFromJsonAsync<List<Pet>>();
+            return View(model);
         }
         [Route("privacy")]
         public IActionResult Privacy()

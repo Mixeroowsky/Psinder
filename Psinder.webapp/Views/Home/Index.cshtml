@@ -1,7 +1,8 @@
-﻿@{
+﻿@model List<Pet>
+@{
     ViewData["Title"] = "Strona główna";
-}
 
+}
 <div class="text-center">
     <h1 class="display-4">Zaadoptuj zwierzaka</h1>
     
@@ -9,18 +10,30 @@
 <h3>Nasze zwierzęta</h3>
 <form asp-action="Index" asp-controller="Pets" method="get">
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Imię zwierzaka" aria-label="Pet.name">
+        <input type="text" name="Name" class="form-control" placeholder="Imię zwierzaka" aria-label="Pet.name">
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Szukaj</button>
+            <a asp-action="Index" asp-controller="Pets" method="get">
+                <button class="btn btn-outline-secondary">Szukaj</button>
+            </a>
         </div>
     </div>
 </form>
-
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
+<div class="container">
+    <h3 class="display-4">Poznaj nasze zwierzaki</h3>
+    <div class="row">
+        @foreach (var pet in Model.Take(3))
+        {      
+            <div class="col-sm-4">
+                <div class="card" style="width: 25rem;">
+                    <img class="card-img-top" src="" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@pet.Name</h5>
+                        <p class="card-text">@pet.Description</p>
+                        <a asp-action="Details" asp-controller="Pets" asp-route-id="@pet.PetId" class="btn btn-outline-secondary">Zobacz</a>
+                    </div>
+                </div>            
+            </div>
+        }
+    </div>
 </div>
+

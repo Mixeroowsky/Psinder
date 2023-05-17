@@ -36,8 +36,7 @@ namespace Psinder.Api.Controllers
         }
         [HttpGet]
         public async Task<ActionResult<List<Pet>>> SearchPetByName(string name)
-        {
-            
+        {            
             return await _petService.SearchPetByName(name);
         }
 
