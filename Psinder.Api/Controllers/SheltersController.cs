@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Psinder.Api.Data;
+using Psinder.Api.Models;
+using Psinder.Api.Services;
 
 namespace Psinder.Api.Controllers
 {
@@ -13,68 +15,55 @@ namespace Psinder.Api.Controllers
     [ApiController]
     public class SheltersController : ControllerBase
     {
-        private readonly PsinderContext _context;
+        private readonly IShelterService _shelterService;
 
-        public SheltersController(PsinderContext context)
+        public SheltersController(IShelterService shelterService)
         {
-            _context = context;
+            _shelterService = shelterService;
         }
 
         // GET: api/Shelters
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Shelter>>> GetShelters()
+        public async Task<ActionResult<List<ShelterModel>>> GetAllShelters()
         {
-          if (_context.Shelters == null)
-          {
-              return NotFound();
-          }
-            return await _context.Shelters.ToListAsync();
+            var shelters = await _shelterService.GetAllShelters();
+            if (shelters == null || shelters.Count == 0)
+            {
+                return NoContent();
+            }
+            return Ok(shelters);
         }
 
         // GET: api/Shelters/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Shelter>> GetShelter(int id)
+        public async Task<ActionResult<ShelterModel>> GetShelter(int id)
         {
-          if (_context.Shelters == null)
-          {
-              return NotFound();
-          }
-            var shelter = await _context.Shelters.FindAsync(id);
-
+            var shelter = await _shelterService.GetShelterById(id);
             if (shelter == null)
             {
                 return NotFound();
             }
-
             return shelter;
         }
 
         // PUT: api/Shelters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutShelter(int id, Shelter shelter)
+        public async Task<ActionResult<ShelterModel>> PutShelter(int id, ShelterModel shelter)
         {
+            
             if (id != shelter.ShelterId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(shelter).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                return await _shelterService.UpdateShelter(shelter);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ShelterExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return StatusCode(StatusCodes.Status500InternalServerError, "Błąd w edycji schroniska");
             }
 
             return NoContent();
@@ -83,41 +72,45 @@ namespace Psinder.Api.Controllers
         // POST: api/Shelters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Shelter>> PostShelter(Shelter shelter)
+        public async Task<ActionResult<ShelterModel>> PostShelter(ShelterModel shelter)
         {
-          if (_context.Shelters == null)
-          {
-              return Problem("Entity set 'PsinderContext.Shelters'  is null.");
-          }
-            _context.Shelters.Add(shelter);
-            await _context.SaveChangesAsync();
+            
+            try
+            {
+                if (shelter == null)
+                {
+                    return BadRequest();
+                }
+                var result = await _shelterService.AddShelter(shelter);
 
-            return CreatedAtAction("GetShelter", new { id = shelter.ShelterId }, shelter);
+                return CreatedAtAction(nameof(GetShelter), new { id = result.ShelterId }, result);
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Błąd przy tworzeniu schroniska");
+            }            
         }
 
         // DELETE: api/Shelters/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteShelter(int id)
+        public async Task<ActionResult<Shelter>> DeleteShelter(int id)
         {
-            if (_context.Shelters == null)
+            try
             {
-                return NotFound();
+                var employeeToDelete = await _shelterService.GetShelterById(id);
+
+                if (employeeToDelete == null)
+                {
+                    return NotFound($"Nie znaleziono schroniska o id {id} ");
+                }
+
+                return await _shelterService.DeleteShelter(id);
             }
-            var shelter = await _context.Shelters.FindAsync(id);
-            if (shelter == null)
+            catch (Exception)
             {
-                return NotFound();
+                return StatusCode(StatusCodes.Status500InternalServerError, "Bład przy usuwaniu schroniska");
             }
-
-            _context.Shelters.Remove(shelter);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool ShelterExists(int id)
-        {
-            return (_context.Shelters?.Any(e => e.ShelterId == id)).GetValueOrDefault();
         }
     }
 }

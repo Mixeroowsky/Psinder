@@ -14,6 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
 builder.Services.AddScoped<IPetService, PetService>();
+builder.Services.AddScoped<IShelterService, ShelterService>();
 
 var app = builder.Build();
 

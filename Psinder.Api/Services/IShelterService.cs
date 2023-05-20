@@ -1,4 +1,5 @@
-﻿using Psinder.Api.Models;
+﻿using Psinder.Api.Data;
+using Psinder.Api.Models;
 
 namespace Psinder.Api.Services
 {
@@ -6,6 +7,8 @@ namespace Psinder.Api.Services
     {
         Task<List<ShelterModel>> GetAllShelters();
         Task<ShelterModel> GetShelterById(int id);
-        Task<int> AddShelter(ShelterModel model);
+        Task<ShelterModel> AddShelter(ShelterModel model);
+        Task<ShelterModel> UpdateShelter(ShelterModel model);
+        Task<Shelter> DeleteShelter(int id);
     }
 }

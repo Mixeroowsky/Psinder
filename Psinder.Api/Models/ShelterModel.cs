@@ -16,6 +16,6 @@ namespace Psinder.Api.Models
         public string? PhoneNumber { get; set; }
         [EmailAddress(ErrorMessage = "Nieprawidłowy adres Email")]
         public string? Email { get; set; }
-        public ICollection<PetModel>? Pets { get; set; } = new List<PetModel>();
+        public ICollection<PetModel>? Pets { get; set; }
     }
 }
