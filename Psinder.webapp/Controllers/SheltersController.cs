@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Psinder.Api.Data;
+using Psinder.Api.Models;
 
 namespace Psinder.webapp.Controllers
 {
@@ -16,12 +16,12 @@ namespace Psinder.webapp.Controllers
             string uri;
             if (string.IsNullOrEmpty(name))
             {
-                ViewData["Title"] = "Wszystkie zwierzęta";
+                ViewData["Title"] = "Wszystkie schroniska";
                 uri = "/Shelters/GetShelters/";
             }
             else
             {
-                ViewData["Title"] = $"Zwierzęta o imieniu {name}";
+                ViewData["Title"] = $"Schroniska zawierające {name}";
                 uri = $"/Shelters/GetShelters/?name={name}";
             }
             HttpClient client = _clientFactory.CreateClient(name: "Psinder.Api");
@@ -30,7 +30,7 @@ namespace Psinder.webapp.Controllers
                 requestUri: uri
             );
             HttpResponseMessage response = await client.SendAsync(task);
-            IEnumerable<Shelter>? model = await response.Content.ReadFromJsonAsync<IEnumerable<Shelter>>();
+            List<ShelterModel>? model = await response.Content.ReadFromJsonAsync<List<ShelterModel>>();
             return View(model);
         }
     }

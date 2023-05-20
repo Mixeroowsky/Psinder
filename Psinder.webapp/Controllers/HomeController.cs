@@ -28,7 +28,7 @@ namespace Psinder.webapp.Controllers
                 requestUri: uri
             );
             HttpResponseMessage response = await client.SendAsync(task);
-            List<Pet>? model = await response.Content.ReadFromJsonAsync<List<Pet>>();
+            List<PetModel>? model = await response.Content.ReadFromJsonAsync<List<PetModel>>();
             return View(model);
         }
         [Route("privacy")]

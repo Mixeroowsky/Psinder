@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Psinder.Api.Model
+namespace Psinder.Api.Models
 {
     public enum Sex
     {
@@ -11,7 +11,7 @@ namespace Psinder.Api.Model
     {
         Pies, Kot, Inne
     }
-    public class Pet
+    public class PetModel
     {
         public int PetId { get; set; }
         [Required(ErrorMessage = "Podaj imię")]
@@ -25,6 +25,6 @@ namespace Psinder.Api.Model
         public BreedType BreedType { get; set; }
         public string? PhotoUrl { get; set; }
         public int ShelterId { get; set; }
-        public Shelter Shelter { get; set; } = null!;
+        public string Shelter { get; set; } = null!;
     }
 }

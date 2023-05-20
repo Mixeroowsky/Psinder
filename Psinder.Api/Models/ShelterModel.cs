@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Psinder.Api.Model
+namespace Psinder.Api.Models
 {
-    public class Shelter
+    public class ShelterModel
     {
         public int ShelterId { get; set; }
         public string? Name { get; set; }
@@ -16,6 +16,6 @@ namespace Psinder.Api.Model
         public string? PhoneNumber { get; set; }
         [EmailAddress(ErrorMessage = "Nieprawidłowy adres Email")]
         public string? Email { get; set; }
-        public ICollection<Pet>? Pets { get; set; } = new List<Pet>();
+        public ICollection<PetModel>? Pets { get; set; } = new List<PetModel>();
     }
 }

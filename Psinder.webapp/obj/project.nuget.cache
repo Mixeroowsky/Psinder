@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "qRVcvZ9QhQWb9kACqsb9OG5xh4ZFlwMf0yBueGY6aoy67PrkiOx0706Rbyk+eh5T/9LP0bWm32Clx+UpC3HULw==",
+  "dgSpecHash": "pD414Ngm0C4D/+92ltRIzcx+6YI5mZ0cW/MxDMFFQAa2qHrJuPk8oS6qP7ic3GRW9i+W4JkzOPl1f6go1cbKPw==",
   "success": true,
   "projectFilePath": "C:\\Visual\\Psinder\\Psinder\\Psinder.webapp\\Psinder.webapp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\black\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\black\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\black\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\black\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\black\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

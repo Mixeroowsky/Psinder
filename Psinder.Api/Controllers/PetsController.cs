@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.FileProviders;
-using Psinder.Api.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using Psinder.Api.Models;
 using Psinder.Api.Services;
 
 namespace Psinder.Api.Controllers
@@ -15,36 +7,48 @@ namespace Psinder.Api.Controllers
     [Route("[controller]/[action]")]
     [ApiController]
     public class PetsController : ControllerBase
-    {        
+    {
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IPetService _petService;
 
         public PetsController(
-            PsinderContext context, 
-            IWebHostEnvironment webHostEnvironment, 
+            IWebHostEnvironment webHostEnvironment,
             IPetService petService)
-        {            
+        {
             _webHostEnvironment = webHostEnvironment;
             _petService = petService;
         }
 
         // GET: api/Pets
         [HttpGet]
-        public async Task<ActionResult<List<Pet>>> GetAllPets()
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<PetModel>))]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult<List<PetModel>>> GetAllPets()
         {
-            return await _petService.GetAllPets();
+            var pets = await _petService.GetAllPets();
+            if (pets == null || pets.Count == 0)
+            {
+                return NoContent();
+            }
+            return Ok(pets);
         }
         [HttpGet]
-        public async Task<ActionResult<List<Pet>>> SearchPetByName(string name)
-        {            
-            return await _petService.SearchPetByName(name);
+        public async Task<ActionResult<List<PetModel>>> SearchPetByName(string name)
+        {
+            var pet = await _petService.SearchPetByName(name);
+            return Ok(pet);
         }
 
         // GET: api/Pets/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Pet>> GetPetById(int id)
+        public async Task<ActionResult<PetModel>> GetPetById(int id)
         {
-            return await _petService.GetPetById(id);            
+            var pet = await _petService.GetPetById(id);
+            if (pet == null)
+            {
+                return NotFound();
+            }
+            return Ok(pet);            
         }
         /*
         // PUT: api/Pets/5

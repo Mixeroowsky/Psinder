@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Psinder.Api.Model
+namespace Psinder.Api.Models
 {
     public class UserModel
     {

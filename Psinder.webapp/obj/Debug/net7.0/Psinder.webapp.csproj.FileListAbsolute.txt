@@ -290,3 +290,5 @@ C:\Visual\Psinder\Psinder\Psinder.webapp\bin\Debug\net7.0\package-lock.json
 C:\Visual\Psinder\Psinder\Psinder.webapp\bin\Debug\net7.0\react\babel.config.json
 C:\Visual\Psinder\Psinder\Psinder.webapp\bin\Debug\net7.0\react\package-lock.json
 C:\Visual\Psinder\Psinder\Psinder.webapp\bin\Debug\net7.0\react\package.json
+C:\Visual\Psinder\Psinder\Psinder.webapp\bin\Debug\net7.0\AutoMapper.dll
+C:\Visual\Psinder\Psinder\Psinder.webapp\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

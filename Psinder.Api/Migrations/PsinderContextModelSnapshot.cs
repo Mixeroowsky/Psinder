@@ -22,7 +22,7 @@ namespace Psinder.Api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Psinder.Api.Models.Pet", b =>
+            modelBuilder.Entity("Psinder.Api.Data.Pet", b =>
                 {
                     b.Property<int>("PetId")
                         .ValueGeneratedOnAdd()
@@ -36,11 +36,13 @@ namespace Psinder.Api.Migrations
                     b.Property<int>("BreedType")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhotoUrl")
@@ -52,6 +54,9 @@ namespace Psinder.Api.Migrations
                     b.Property<int>("ShelterId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("PetId");
 
                     b.HasIndex("ShelterId");
@@ -59,7 +64,7 @@ namespace Psinder.Api.Migrations
                     b.ToTable("Pets");
                 });
 
-            modelBuilder.Entity("Psinder.Api.Models.Shelter", b =>
+            modelBuilder.Entity("Psinder.Api.Data.Shelter", b =>
                 {
                     b.Property<int>("ShelterId")
                         .ValueGeneratedOnAdd()
@@ -96,7 +101,7 @@ namespace Psinder.Api.Migrations
                     b.ToTable("Shelters");
                 });
 
-            modelBuilder.Entity("Psinder.Api.Models.User", b =>
+            modelBuilder.Entity("Psinder.Api.Data.User", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
@@ -133,9 +138,9 @@ namespace Psinder.Api.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Psinder.Api.Models.Pet", b =>
+            modelBuilder.Entity("Psinder.Api.Data.Pet", b =>
                 {
-                    b.HasOne("Psinder.Api.Models.Shelter", "Shelter")
+                    b.HasOne("Psinder.Api.Data.Shelter", "Shelter")
                         .WithMany("Pets")
                         .HasForeignKey("ShelterId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -144,7 +149,7 @@ namespace Psinder.Api.Migrations
                     b.Navigation("Shelter");
                 });
 
-            modelBuilder.Entity("Psinder.Api.Models.Shelter", b =>
+            modelBuilder.Entity("Psinder.Api.Data.Shelter", b =>
                 {
                     b.Navigation("Pets");
                 });

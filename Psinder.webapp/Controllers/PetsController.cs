@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Psinder.Api.Data;
+using Psinder.Api.Models;
 using System.Threading.Tasks;
 
 namespace Psinder.webapp.Controllers
@@ -32,10 +32,10 @@ namespace Psinder.webapp.Controllers
                 requestUri: uri
             );
             HttpResponseMessage response = await client.SendAsync(task);
-            List<Pet>? model = await response.Content.ReadFromJsonAsync<List<Pet>>();
+            List<PetModel>? model = await response.Content.ReadFromJsonAsync<List<PetModel>>();
             return View(model);            
         }
-        public async Task<IActionResult> Details(int id)
+        public IActionResult Details(int id)
         {            
             TempData["PetId"] = id;
             return RedirectToAction("Profile");
@@ -54,9 +54,8 @@ namespace Psinder.webapp.Controllers
                 requestUri: uri
             );
             HttpResponseMessage response = await client.SendAsync(task);
-            Pet pet = await response.Content.ReadFromJsonAsync<Pet>();
-            Shelter shelter = new Shelter();            
-            ViewBag.Shelter = pet.Shelter.Name;
+            PetModel pet = await response.Content.ReadFromJsonAsync<PetModel>();
+            
             return View("Details", pet);
         }
     }
