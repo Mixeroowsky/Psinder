@@ -50,8 +50,7 @@ namespace Psinder.Api.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<ActionResult<ShelterModel>> PutShelter(int id, ShelterModel shelter)
-        {
-            
+        {            
             if (id != shelter.ShelterId)
             {
                 return BadRequest();
@@ -65,16 +64,13 @@ namespace Psinder.Api.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Błąd w edycji schroniska");
             }
-
-            return NoContent();
         }
 
         // POST: api/Shelters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<ShelterModel>> PostShelter(ShelterModel shelter)
-        {
-            
+        {            
             try
             {
                 if (shelter == null)
@@ -87,7 +83,6 @@ namespace Psinder.Api.Controllers
             }
             catch (Exception)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, "Błąd przy tworzeniu schroniska");
             }            
         }

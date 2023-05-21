@@ -16,7 +16,7 @@ public class PetService : IPetService
         _context = context;
         _mapper = mapper;
     }
-    public async Task<PetModel> GetPetById(int id)
+    public async Task<PetModel> GetPet(int id)
     {    
         var pet = await _context.Pets.Where(p => p.PetId == id).FirstOrDefaultAsync();
         return _mapper.Map<PetModel>(pet);
@@ -31,6 +31,44 @@ public class PetService : IPetService
     {
         var pets = await _context.Pets.Where(p => p.Name.Contains(name)).ToListAsync();
         return _mapper.Map<List<PetModel>>(pets);
+    }
+
+    public async Task<PetModel> AddPet(PetModel model)
+    {
+        var pet = _mapper.Map<Pet>(model);
+        await _context.Pets.AddAsync(pet);
+        await _context.SaveChangesAsync();
+        return model;
+    }
+
+    public async Task<PetModel> UpdatePet(PetModel model)
+    {
+        var pet = _mapper.Map<Pet>(model);
+        var result = await _context.Pets.FirstOrDefaultAsync(s => s.PetId == model.PetId);
+        if (result != null)
+        {
+            result.Name = model.Name;
+            result.Description = model.Description;
+            result.BreedType = (int)model.BreedType;
+            result.Sex = (int)model.Sex;
+            result.Age = model.Age;
+            result.PhotoUrl = model.PhotoUrl;            
+            await _context.SaveChangesAsync();
+            return model;
+        }
+        return model;
+    }
+
+    public async Task<Pet> DeletePet(int id)
+    {
+        var pet = await _context.Pets.Where(p => p.PetId == id).FirstOrDefaultAsync();
+        if (pet != null)
+        {
+            _context.Pets.Remove(pet);
+            await _context.SaveChangesAsync();
+            return pet;
+        }
+        return pet;
     }
 }
 

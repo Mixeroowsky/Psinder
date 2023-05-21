@@ -6,6 +6,9 @@ namespace Psinder.Api.Services;
 public interface IPetService
 {
     Task<List<PetModel>> GetAllPets();
-    Task<PetModel> GetPetById(int id);
+    Task<PetModel> GetPet(int id);
     Task<List<PetModel>> SearchPetByName(string name);
+    Task<PetModel> AddPet(PetModel model);
+    Task<PetModel> UpdatePet(PetModel model);
+    Task<Pet> DeletePet(int id);
 }

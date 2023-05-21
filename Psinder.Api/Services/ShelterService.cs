@@ -65,8 +65,7 @@ namespace Psinder.Api.Services
                 await _context.SaveChangesAsync();
                 return shelter;
             }
-            return shelter;
-            
+            return shelter;            
         }
     }
 }

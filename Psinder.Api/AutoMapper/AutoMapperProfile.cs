@@ -9,6 +9,7 @@ namespace MovieNotice.API.AutoMapper
         public AutoMapperProfile() 
         {
             CreateMap<Pet, PetModel>();
+            CreateMap<PetModel, Pet>();
             CreateMap<Shelter, ShelterModel>();
             CreateMap<ShelterModel, Shelter>();
             CreateMap<User, UserModel>();      

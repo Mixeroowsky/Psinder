@@ -25,6 +25,5 @@ namespace Psinder.Api.Models
         public BreedType BreedType { get; set; }
         public string? PhotoUrl { get; set; }
         public int ShelterId { get; set; }
-        public string Shelter { get; set; } = null!;
     }
 }

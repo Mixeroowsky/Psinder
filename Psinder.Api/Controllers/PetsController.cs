@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Psinder.Api.Data;
 using Psinder.Api.Models;
 using Psinder.Api.Services;
 
@@ -41,85 +43,76 @@ namespace Psinder.Api.Controllers
 
         // GET: api/Pets/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PetModel>> GetPetById(int id)
+        public async Task<ActionResult<PetModel>> GetPet(int id)
         {
-            var pet = await _petService.GetPetById(id);
+            var pet = await _petService.GetPet(id);
             if (pet == null)
             {
                 return NotFound();
             }
             return Ok(pet);            
         }
-        /*
+        
         // PUT: api/Pets/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPet(int id, Pet pet)
+        public async Task<ActionResult<PetModel>> PutPet(int id, PetModel pet)
         {
             if (id != pet.PetId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(pet).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                return await _petService.UpdatePet(pet);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PetExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return StatusCode(StatusCodes.Status500InternalServerError, "Błąd w edycji schroniska");
             }
-
-            return NoContent();
         }
 
         // POST: api/Pets
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Pet>> PostPet(Pet pet)
-        {            
-            if (_context.Pets == null)
+        public async Task<ActionResult<Pet>> PostPet(PetModel pet)
+        {
+            try
             {
-                return Problem("Entity set 'PsinderContext.Pets' is null.");
-            }
-            if (pet.PhotoUrl != null)
-            {
-                string folder = "books/cover/";
-                //pet.PhotoUrl = await UploadImage(folder, pet.PhotoFile);
-            }
-            _context.Pets.Add(pet);
-            await _context.SaveChangesAsync();
+                if (pet == null)
+                {
+                    return BadRequest();
+                }
+                var result = await _petService.AddPet(pet);
 
-            return CreatedAtAction("GetPet", new { id = pet.PetId }, pet);
+                return CreatedAtAction(nameof(GetPet), new { id = result.PetId }, result);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Błąd przy tworzeniu profilu zwierzaka");
+            }
         }
 
         // DELETE: api/Pets/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePet(int id)
+        public async Task<ActionResult<Pet>> DeletePet(int id)
         {
-            if (_context.Pets == null)
+            try
             {
-                return NotFound();
+                var employeeToDelete = await _petService.GetPet(id);
+
+                if (employeeToDelete == null)
+                {
+                    return NotFound($"Nie znaleziono schroniska o id {id} ");
+                }
+
+                return await _petService.DeletePet(id);
             }
-            var pet = await _context.Pets.FindAsync(id);
-            if (pet == null)
+            catch (Exception)
             {
-                return NotFound();
+                return StatusCode(StatusCodes.Status500InternalServerError, "Bład przy usuwaniu schroniska");
             }
-
-            _context.Pets.Remove(pet);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
         private async Task<string> UploadImage(string folderPath, IFormFile file)
         {
@@ -132,9 +125,5 @@ namespace Psinder.Api.Controllers
 
             return "/" + folderPath;
         }
-        private bool PetExists(int id)
-        {
-            return (_context.Pets?.Any(e => e.PetId == id)).GetValueOrDefault();
-        }*/
     }
 }
