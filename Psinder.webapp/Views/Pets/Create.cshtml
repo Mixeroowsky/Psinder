@@ -1,5 +1,47 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model PetModel
+<h2>@ViewData["Title"]</h2>
+<html>
+    <body>
+    <form asp-action="Create" class="row g-3">
+            <div class="col-md-2">
+                <div class="form-floating mb-1">
+                    <input asp-for="Name" type="text" class="form-control" id="name" placeholder="Imię">
+                    <label asp-for="Name" for="name">Imię</label>
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="form-floating mb-3">
+                    <input asp-for="Age" class="form-control" id="age" placeholder="10">
+                    <label asp-for="Age">Wiek</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-floating">
+                    <select asp-for="BreedType" class="form-select" id="type">
+                        <option value="0" selected>Pies</option>
+                        <option value="1">Kot</option>
+                        <option value="2">Inne</option>
+                    </select>
+                    <label asp-for="BreedType">Typ zwierzęcia</label>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-floating">
+                    <select asp-for="Sex" class="form-select" id="sex">
+                        <option value="0" selected>Samiec</option>
+                        <option value="1">Samica</option>
+                    </select>
+                    <label asp-for="Sex">Płeć</label>
+                </div>
+            </div>
+            <div class="col-md-12"> 
+                <div class="form-floating">
+                    <textarea asp-for="Description" class="form-control" placeholder="Opis" id="description" style="height: 100px"></textarea>
+                    <label asp-for="Description">Opis</label>
+                </div>
+            </div>  
+        </form>   
+    
+    </body>
+</html>

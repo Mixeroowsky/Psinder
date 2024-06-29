@@ -38,7 +38,7 @@ namespace Psinder.Api.Data
 
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Psinder;Integrated Security=true;TrustServerCertificate=True;");
+                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Arbitrary;Integrated Security=true;TrustServerCertificate=True;");
             }
         }
 

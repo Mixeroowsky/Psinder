@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Psinder.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c9b43bd18b66ccaa3572b6e4a98681c6ad42d0e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Psinder.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Psinder.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -58,5 +58,10 @@ namespace Psinder.webapp.Controllers
             
             return View("Details", pet);
         }
+        public async Task<IActionResult> Create()
+        {
+            ViewData["Title"] = "Dodaj nowe zwierzę";
+            return View();
+        }
     }
 }

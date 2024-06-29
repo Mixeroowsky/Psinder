@@ -11,7 +11,7 @@ namespace Psinder.webapp.Controllers
         {
             _clientFactory = httpClientFactory;
         }
-        public async Task<IActionResult> Index(string? name)
+        public async Task<ActionResult<List<ShelterModel>>> Index(string? name)
         {
             string uri;
             if (string.IsNullOrEmpty(name))

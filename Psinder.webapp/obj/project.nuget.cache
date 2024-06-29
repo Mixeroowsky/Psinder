@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pD414Ngm0C4D/+92ltRIzcx+6YI5mZ0cW/MxDMFFQAa2qHrJuPk8oS6qP7ic3GRW9i+W4JkzOPl1f6go1cbKPw==",
+  "dgSpecHash": "bDH3X4k4qp9khsiTIhvs59/uXcRHNrCEdMT+TkfkngdSqNTwiJXx12IIrwexyYmi5ui22ScpbcHJS9SUqHnmKA==",
   "success": true,
   "projectFilePath": "C:\\Visual\\Psinder\\Psinder\\Psinder.webapp\\Psinder.webapp.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\black\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\black\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\black\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\black\\.nuget\\packages\\bootstrap\\5.2.3\\bootstrap.5.2.3.nupkg.sha512",
     "C:\\Users\\black\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\black\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.3\\microsoft.aspnetcore.openapi.7.0.3.nupkg.sha512",
     "C:\\Users\\black\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.11\\microsoft.aspnetcore.razor.language.6.0.11.nupkg.sha512",

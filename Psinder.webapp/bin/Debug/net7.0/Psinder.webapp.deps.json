@@ -11,7 +11,8 @@
           "Microsoft.EntityFrameworkCore": "7.0.5",
           "Microsoft.EntityFrameworkCore.Design": "7.0.5",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.17.0",
-          "Psinder.Api": "1.0.0"
+          "Psinder.Api": "1.0.0",
+          "bootstrap": "5.2.3"
         },
         "runtime": {
           "Psinder.webapp.dll": {}
@@ -74,6 +75,7 @@
           }
         }
       },
+      "bootstrap/5.2.3": {},
       "Humanizer.Core/2.14.1": {
         "runtime": {
           "lib/net6.0/Humanizer.dll": {
@@ -2412,6 +2414,13 @@
       "sha512": "sha512-EycyMsb6rD2PK9P0SyibFfEhvWWttdrYhyPF4f41uzdB/44yQlV+2Wehxyg489Rj6gbPvSPgbKq0xsHJBhipZA==",
       "path": "azure.identity/1.6.0",
       "hashPath": "azure.identity.1.6.0.nupkg.sha512"
+    },
+    "bootstrap/5.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tZZrH4HdqBr/oeUlGoc2KliYlwXeN3qyhKgc1B5dc585+lnMkcD4A5yIX2NmNoXCCagQQiQGKn7A97sWoo2AOw==",
+      "path": "bootstrap/5.2.3",
+      "hashPath": "bootstrap.5.2.3.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",
