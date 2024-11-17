@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Psinder.Server.Context;
 using Psinder.Server.Entities;
 using Psinder.Server.Services;
+using Scalar.AspNetCore;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -67,6 +68,7 @@ app.MapStaticAssets();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.MapScalarApiReference();
     app.MapOpenApi();
 }
 

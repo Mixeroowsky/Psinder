@@ -43,6 +43,12 @@ namespace Psinder.Server.Services
             return _mapper.Map<PetDto>(pet);
         }
 
+        public async Task<ShelterDto> GetPetsShelter(int id)
+        {
+            var shelter = await _context.Shelters.FirstOrDefaultAsync(s => s.ShelterId == id);
+            return _mapper.Map<ShelterDto>(shelter);
+        }
+
         public async Task<List<PetDto>> SearchPetByName(string name)
         {
             var pets = await _context.Pets.Where(p => p.Name.Contains(name)).ToListAsync();

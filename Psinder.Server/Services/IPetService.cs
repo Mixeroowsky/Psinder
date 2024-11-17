@@ -11,5 +11,6 @@ namespace Psinder.Server.Services
         Task<PetDto> AddPet(PetDto model);
         Task<PetDto> UpdatePet(PetDto model);
         Task<Pet> DeletePet(int id);
+        Task<ShelterDto> GetPetsShelter(int id);
     }
 }
