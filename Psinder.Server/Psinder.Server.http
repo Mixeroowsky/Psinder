@@ -1,6 +1,0 @@
-@Psinder.Server_HostAddress = http://localhost:5288
-
-GET {{Psinder.Server_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

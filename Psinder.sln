@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35506.116 d17.12
+VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Psinder.Server", "Psinder.Server\Psinder.Server.csproj", "{02F6F345-3C03-4544-AB81-FCED403CE937}"
-EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "psinder.client", "psinder.client\psinder.client.esproj", "{BE9296D5-4BF3-46CD-96A0-E52748B55CD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +15,6 @@ Global
 		{02F6F345-3C03-4544-AB81-FCED403CE937}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02F6F345-3C03-4544-AB81-FCED403CE937}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02F6F345-3C03-4544-AB81-FCED403CE937}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE9296D5-4BF3-46CD-96A0-E52748B55CD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE9296D5-4BF3-46CD-96A0-E52748B55CD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE9296D5-4BF3-46CD-96A0-E52748B55CD3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{BE9296D5-4BF3-46CD-96A0-E52748B55CD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE9296D5-4BF3-46CD-96A0-E52748B55CD3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE9296D5-4BF3-46CD-96A0-E52748B55CD3}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
