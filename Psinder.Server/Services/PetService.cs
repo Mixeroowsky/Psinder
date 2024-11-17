@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Psinder.Server.AutoMapper;
 using Psinder.Server.Context;
 using Psinder.Server.Dtos;
 using Psinder.Server.Entities;
@@ -14,33 +13,58 @@ namespace Psinder.Server.Services
 
         public async Task<PetDto> AddPet(PetDto model)
         {
-            throw new NotImplementedException();
+            var pet = _mapper.Map<Pet>(model);
+            await _context.Pets.AddAsync(pet);
+            await _context.SaveChangesAsync();
+            return model;
         }
 
         public async Task<Pet> DeletePet(int id)
         {
-            throw new NotImplementedException();
+            var pet = await _context.Pets.Where(p => p.PetId == id).FirstOrDefaultAsync();
+            if (pet != null)
+            {
+                _context.Pets.Remove(pet);
+                await _context.SaveChangesAsync();
+                return pet;
+            }
+            return pet;
         }
 
         public async Task<List<PetDto>> GetAllPets()
         {
-            throw new NotImplementedException();
+            var pets = await _context.Pets.ToListAsync();
+            return _mapper.Map<List<PetDto>>(pets);
         }
 
         public async Task<PetDto> GetPet(int id)
         {
-            var pet = await _context.Pets.Where(p => p.PetId == id).FirstOrDefaultAsync();
+            var pet = await _context.Pets.FirstOrDefaultAsync(p => p.PetId == id);
             return _mapper.Map<PetDto>(pet);
         }
 
         public async Task<List<PetDto>> SearchPetByName(string name)
         {
-            throw new NotImplementedException();
+            var pets = await _context.Pets.Where(p => p.Name.Contains(name)).ToListAsync();
+            return _mapper.Map<List<PetDto>>(pets);
         }
 
         public async Task<PetDto> UpdatePet(PetDto model)
         {
-            throw new NotImplementedException();
+            var pet = _mapper.Map<Pet>(model);
+            var result = await _context.Pets.FirstOrDefaultAsync(p => p.PetId == model.PetId);
+            if (result != null)
+            {
+                result.Name = model.Name;
+                result.Description = model.Description;
+                result.BreedType = (int)model.BreedType;
+                result.Sex = (int)model.Sex;
+                result.Age = model.Age;
+                result.PhotoUrl = model.PhotoUrl;
+                await _context.SaveChangesAsync();
+                return model;
+            }
+            return model;
         }
     }
 }
