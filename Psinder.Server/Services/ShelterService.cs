@@ -6,7 +6,7 @@ using Psinder.Server.Entities;
 
 namespace Psinder.Server.Services
 {
-    public class ShelterService(PsinderDbContext context, IMapper mapper)
+    public class ShelterService(PsinderDbContext context, IMapper mapper) : IShelterService
     {
         private readonly PsinderDbContext _context = context;
         private readonly IMapper _mapper = mapper;
