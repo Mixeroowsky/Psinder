@@ -12,7 +12,7 @@ namespace Psinder.Server.Dtos
     }
     public class PetDto
     {
-        public int PetId { get; set; }
+        public int Id { get; set; }
         [Required(ErrorMessage = "Enter a name")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Enter a description")]

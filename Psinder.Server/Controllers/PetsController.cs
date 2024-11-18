@@ -49,7 +49,7 @@ namespace Psinder.Server.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<PetDto>> PutPet(int id, PetDto pet)
         {
-            if (id != pet.PetId)
+            if (id != pet.Id)
             {
                 return BadRequest();
             }
@@ -58,9 +58,9 @@ namespace Psinder.Server.Controllers
             {
                 return await _petService.UpdatePet(pet);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error occured while altering pet's data");
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occured while altering pet's data" + ex.Message);
             }
         }
 
@@ -80,11 +80,11 @@ namespace Psinder.Server.Controllers
                 }
                 var result = await _petService.AddPet(pet);
 
-                return CreatedAtAction(nameof(GetPet), new { id = result.PetId }, result);
+                return CreatedAtAction(nameof(GetPet), new { id = result.Id }, result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error occured while creating new pet");
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occured while creating new pet" + ex.Message);
             }
         }
 
@@ -102,9 +102,9 @@ namespace Psinder.Server.Controllers
 
                 return await _petService.DeletePet(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error occured while deleting a pet");
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occured while deleting a pet" + ex.Message);
             }
         }
         private async Task<string> UploadImage(string folderPath, IFormFile file)

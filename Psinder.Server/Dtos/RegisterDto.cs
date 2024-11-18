@@ -1,4 +1,4 @@
-﻿namespace ApiScrapper.Dtos
+﻿namespace Psinder.Server.Dtos
 {
     public class RegisterDto
     {

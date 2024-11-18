@@ -1,4 +1,4 @@
-﻿using ApiScrapper.Dtos;
+﻿using Psinder.Server.Dtos;
 using Psinder.Server.Entities;
 
 namespace Psinder.Server.Services

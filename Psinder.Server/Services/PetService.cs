@@ -21,7 +21,7 @@ namespace Psinder.Server.Services
 
         public async Task<Pet> DeletePet(int id)
         {
-            var pet = await _context.Pets.Where(p => p.PetId == id).FirstOrDefaultAsync();
+            var pet = await _context.Pets.Where(p => p.Id == id).FirstOrDefaultAsync();
             if (pet != null)
             {
                 _context.Pets.Remove(pet);
@@ -39,13 +39,13 @@ namespace Psinder.Server.Services
 
         public async Task<PetDto> GetPet(int id)
         {
-            var pet = await _context.Pets.FirstOrDefaultAsync(p => p.PetId == id);
+            var pet = await _context.Pets.FirstOrDefaultAsync(p => p.Id == id);
             return _mapper.Map<PetDto>(pet);
         }
 
         public async Task<ShelterDto> GetPetsShelter(int id)
         {
-            var shelter = await _context.Shelters.FirstOrDefaultAsync(s => s.ShelterId == id);
+            var shelter = await _context.Shelters.FirstOrDefaultAsync(s => s.Id == id);
             return _mapper.Map<ShelterDto>(shelter);
         }
 
@@ -58,7 +58,7 @@ namespace Psinder.Server.Services
         public async Task<PetDto> UpdatePet(PetDto model)
         {
             var pet = _mapper.Map<Pet>(model);
-            var result = await _context.Pets.FirstOrDefaultAsync(p => p.PetId == model.PetId);
+            var result = await _context.Pets.FirstOrDefaultAsync(p => p.Id == model.Id);
             if (result != null)
             {
                 result.Name = model.Name;

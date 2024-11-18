@@ -13,7 +13,7 @@ namespace Psinder.Server.Services
 
         public async Task<ShelterDto> GetShelterById(int id)
         {
-            var shelter = await _context.Shelters.Where(p => p.ShelterId == id).FirstOrDefaultAsync();
+            var shelter = await _context.Shelters.Where(p => p.Id == id).FirstOrDefaultAsync();
             return _mapper.Map<ShelterDto>(shelter);
         }
 
@@ -33,7 +33,7 @@ namespace Psinder.Server.Services
         public async Task<ShelterDto> UpdateShelter(ShelterDto model)
         {
             var shelter = _mapper.Map<Shelter>(model);
-            var result = await _context.Shelters.FirstOrDefaultAsync(s => s.ShelterId == model.ShelterId);
+            var result = await _context.Shelters.FirstOrDefaultAsync(s => s.Id == model.Id);
             if (result != null)
             {
                 result.Name = model.Name;
@@ -52,7 +52,7 @@ namespace Psinder.Server.Services
 
         public async Task<Shelter> DeleteShelter(int id)
         {
-            var shelter = await _context.Shelters.FirstOrDefaultAsync(s => s.ShelterId == id);
+            var shelter = await _context.Shelters.FirstOrDefaultAsync(s => s.Id == id);
             if (shelter != null)
             {
                 _context.Shelters.Remove(shelter);

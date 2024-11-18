@@ -24,11 +24,8 @@ namespace Psinder.Server.Migrations
 
             modelBuilder.Entity("Psinder.Server.Entities.Pet", b =>
                 {
-                    b.Property<int>("PetId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("Id")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PetId"));
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
@@ -57,20 +54,18 @@ namespace Psinder.Server.Migrations
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("PetId");
-
-                    b.HasIndex("ShelterId");
+                    b.HasKey("Id");
 
                     b.ToTable("Pets");
                 });
 
             modelBuilder.Entity("Psinder.Server.Entities.Shelter", b =>
                 {
-                    b.Property<int>("ShelterId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShelterId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ApartementNumber")
                         .HasColumnType("int");
@@ -96,7 +91,7 @@ namespace Psinder.Server.Migrations
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ShelterId");
+                    b.HasKey("Id");
 
                     b.ToTable("Shelters");
                 });
@@ -127,7 +122,7 @@ namespace Psinder.Server.Migrations
                 {
                     b.HasOne("Psinder.Server.Entities.Shelter", "Shelter")
                         .WithMany("Pets")
-                        .HasForeignKey("ShelterId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -1,8 +1,8 @@
-﻿using ApiScrapper.Dtos;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Psinder.Server.Context;
+using Psinder.Server.Dtos;
 using Psinder.Server.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

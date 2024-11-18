@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Psinder.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,7 @@ namespace Psinder.Server.Migrations
                 name: "Shelters",
                 columns: table => new
                 {
-                    ShelterId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -28,7 +28,7 @@ namespace Psinder.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Shelters", x => x.ShelterId);
+                    table.PrimaryKey("PK_Shelters", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -50,8 +50,7 @@ namespace Psinder.Server.Migrations
                 name: "Pets",
                 columns: table => new
                 {
-                    PetId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Sex = table.Column<int>(type: "int", nullable: false),
@@ -64,19 +63,14 @@ namespace Psinder.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pets", x => x.PetId);
+                    table.PrimaryKey("PK_Pets", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Pets_Shelters_ShelterId",
-                        column: x => x.ShelterId,
+                        name: "FK_Pets_Shelters_Id",
+                        column: x => x.Id,
                         principalTable: "Shelters",
-                        principalColumn: "ShelterId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Pets_ShelterId",
-                table: "Pets",
-                column: "ShelterId");
         }
 
         /// <inheritdoc />
