@@ -12,7 +12,7 @@ using Psinder.Server.Context;
 namespace Psinder.Server.Migrations
 {
     [DbContext(typeof(PsinderDbContext))]
-    [Migration("20241118184709_InitialMigration")]
+    [Migration("20241118201731_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -28,7 +28,10 @@ namespace Psinder.Server.Migrations
             modelBuilder.Entity("Psinder.Server.Entities.Pet", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
@@ -58,6 +61,8 @@ namespace Psinder.Server.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ShelterId");
 
                     b.ToTable("Pets");
                 });
@@ -125,7 +130,7 @@ namespace Psinder.Server.Migrations
                 {
                     b.HasOne("Psinder.Server.Entities.Shelter", "Shelter")
                         .WithMany("Pets")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("ShelterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

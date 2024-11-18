@@ -12,6 +12,6 @@
         public DateTime? CreatedOn { get; set; } = DateTime.Now;
         public DateTime? UpdatedOn { get; set; } = DateTime.Now;
         public int ShelterId { get; set; }
-        public Shelter Shelter { get; set; } = null!;
+        public Shelter Shelter { get; set; } 
     }
 }

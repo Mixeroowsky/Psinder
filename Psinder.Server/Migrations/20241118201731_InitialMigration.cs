@@ -50,7 +50,8 @@ namespace Psinder.Server.Migrations
                 name: "Pets",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Sex = table.Column<int>(type: "int", nullable: false),
@@ -65,12 +66,17 @@ namespace Psinder.Server.Migrations
                 {
                     table.PrimaryKey("PK_Pets", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Pets_Shelters_Id",
-                        column: x => x.Id,
+                        name: "FK_Pets_Shelters_ShelterId",
+                        column: x => x.ShelterId,
                         principalTable: "Shelters",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pets_ShelterId",
+                table: "Pets",
+                column: "ShelterId");
         }
 
         /// <inheritdoc />

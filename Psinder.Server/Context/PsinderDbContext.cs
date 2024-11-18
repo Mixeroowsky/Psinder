@@ -19,12 +19,11 @@ namespace Psinder.Server.Context
             modelBuilder.Entity<Pet>()
                 .HasOne(p => p.Shelter)
                 .WithMany(p => p.Pets)
-                .HasForeignKey(s => s.Id)
+                .HasForeignKey(s => s.ShelterId)
                 .IsRequired();
             modelBuilder.Entity<Shelter>()
                 .HasMany(s => s.Pets)
                 .WithOne(s => s.Shelter)
-                .HasForeignKey(s => s.Id)
                 .IsRequired();
         }
     }
