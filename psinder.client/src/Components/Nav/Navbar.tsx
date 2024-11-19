@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "@/Components/ui/button";
 const Navbar = () => {
   return (

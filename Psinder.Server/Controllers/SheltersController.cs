@@ -7,7 +7,7 @@ using Psinder.Server.Services;
 
 namespace Psinder.Server.Controllers
 {
-    [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class SheltersController(IShelterService shelterService) : ControllerBase
     {

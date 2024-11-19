@@ -60,9 +60,10 @@ function App() {
   );
 
   async function populateWeatherData() {
-    const response = await fetch("weatherforecast");
+    const response = await fetch("/api/Shelters/GetAllShelters");
     if (response.ok) {
       const data = await response.json();
+      console.log(data);
       setForecasts(data);
     }
   }
