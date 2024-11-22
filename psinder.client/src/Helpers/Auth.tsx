@@ -5,6 +5,8 @@ import {
   useEffect,
   useState,
 } from "react";
+import { Outlet } from "react-router-dom";
+import { api } from "./Apis/AccountApi";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -16,46 +18,31 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const login = async (email: string, password: string): Promise<void> => {
     try {
-      const response = await fetch("/api/Account/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-        credentials: "include",
-      });
-      if (response?.status == 200) {
-        setIsAuthenticated(true);
-      }
+      await api.login(email, password);
+      setIsAuthenticated(true);
     } catch {}
   };
 
   const logout = async () => {
     try {
-      await fetch("/api/Account/logout", {
-        method: "POST",
-        credentials: "include",
-      });
+      await api.logout();
       setIsAuthenticated(false);
     } catch {}
   };
 
   useEffect(() => {
     const checkAuth = async () => {
-      const response = await fetch("/api/Account/auth", {
-        method: "POST",
-        credentials: "include",
-      });
-      const data = await response.json();
-      console.log(data);
+      try {
+        await api.auth();
+      } catch {
+        setIsAuthenticated(false);
+      }
     };
     checkAuth();
   }, []);
@@ -75,7 +62,8 @@ export const useAuth = (): AuthContextType => {
 };
 
 const Auth = () => {
-  return <div>Auth</div>;
+  useAuth();
+  return <Outlet />;
 };
 
 export default Auth;

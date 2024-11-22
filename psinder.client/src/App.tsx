@@ -1,8 +1,11 @@
 //import { useEffect, useState } from "react";
+import Home from "./Components/Pages/Home";
 import "./App.css";
 import Navbar from "./Components/Nav/Navbar";
-import { AuthProvider } from "./Helpers/Auth";
+import Auth, { AuthProvider } from "./Helpers/Auth";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./Components/Pages/Login";
+import Register from "./Components/Pages/Register";
 
 // interface Forecast {
 //   date: string;
@@ -78,7 +81,13 @@ const App = () => {
     <AuthProvider>
       <Router>
         <Navbar />
-        <Routes></Routes>
+        <Routes>
+          <Route element={<Auth />}>
+            <Route path="/" element={<Home />} />
+          </Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
       </Router>
     </AuthProvider>
   );

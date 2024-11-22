@@ -37,7 +37,9 @@ const Navbar = () => {
             }
           >
             <div className="flex gap-4">
-              <img src={logo} width="64" height="64" alt="logo"></img>
+              <a href="/">
+                <img src={logo} width="64" height="64" alt="logo"></img>
+              </a>
               <div className="grid grid-cols-[100px_1fr] flex">
                 <h1 className="mt-1">
                   <Link to="/">Psinder</Link>
