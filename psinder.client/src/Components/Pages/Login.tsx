@@ -13,6 +13,7 @@ import {
 } from "../ui/form";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { useEffect } from "react";
 
 const formSchema = z.object({
   email: z.string().min(3).max(50).email(),
@@ -21,10 +22,13 @@ const formSchema = z.object({
 
 const Login = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, login } = useAuth();
-  if (isAuthenticated) {
-    navigate("/");
-  }
+  const { isAuthenticated, login, errorMessage } = useAuth();
+  useEffect(() => {
+    console.log("dupa");
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -36,11 +40,11 @@ const Login = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     await login(values.email, values.password);
-    navigate("/");
   };
   return (
     <div className="page-wrapper p-8 mt-24 flex justify-center">
       <div className="p-8 rounded-md border w-96">
+        <div className="text-red-700">{errorMessage}</div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
