@@ -58,7 +58,12 @@ const Navbar = () => {
             <div className="flex flex-box">
               <div className="mt-6 space-x-5">
                 {isAuthenticated ? (
-                  <Button onClick={handleLogout}>Log out</Button>
+                  <Button
+                    className={darkMode ? "bg-green-600" : "bg-green-400"}
+                    onClick={handleLogout}
+                  >
+                    Log out
+                  </Button>
                 ) : (
                   <>
                     <Link to="/login">
