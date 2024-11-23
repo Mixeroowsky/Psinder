@@ -28,7 +28,7 @@ namespace Psinder.Server.Controllers
             }
             return Ok(pets);
         }
-        [HttpGet]
+        [HttpGet("{name}")]
         public async Task<ActionResult<List<PetDto>>> SearchPetByName(string name)
         {
             var pet = await _petService.SearchPetByName(name);
@@ -65,7 +65,7 @@ namespace Psinder.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Pet>> PostPet(PetDto pet)
+        public async Task<ActionResult<PetDto>> PostPet(PetDto pet)
         {
             try
             {

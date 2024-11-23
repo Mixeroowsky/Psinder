@@ -4,11 +4,11 @@ namespace Psinder.Server.Dtos
 {
     public enum Sex
     {
-        Samiec, Samica
+        Male, Female
     }
     public enum BreedType
     {
-        Pies, Kot, Inne
+        Dog, Cat, Other
     }
     public class PetDto
     {
