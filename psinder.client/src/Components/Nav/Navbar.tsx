@@ -37,9 +37,15 @@ const Navbar = () => {
             }
           >
             <div className="flex gap-4">
-              <a href="/">
-                <img src={logo} width="64" height="64" alt="logo"></img>
-              </a>
+              <Link to="/">
+                <img
+                  className="mt-2 ml-2"
+                  src={logo}
+                  width="48"
+                  height="64"
+                  alt="logo"
+                ></img>
+              </Link>
               <div className="grid grid-cols-[100px_1fr] flex">
                 <h1 className="mt-1">
                   <Link to="/">Psinder</Link>
@@ -56,10 +62,12 @@ const Navbar = () => {
             </div>
 
             <div className="flex flex-box">
-              <div className="mt-6 space-x-5">
+              <div className="mt-4 space-x-5">
                 {isAuthenticated ? (
                   <Button
-                    className={darkMode ? "bg-green-600" : "bg-green-400"}
+                    className={`${
+                      darkMode ? "bg-green-600" : "bg-green-400"
+                    } font-weight-300`}
                     onClick={handleLogout}
                   >
                     Log out
@@ -68,16 +76,20 @@ const Navbar = () => {
                   <>
                     <Link to="/login">
                       <Button
-                        className={darkMode ? "bg-green-600" : "bg-green-400"}
+                        className={`${
+                          darkMode ? "bg-green-600" : "bg-green-400"
+                        } text-base w-24 h-10`}
                       >
                         Log In
                       </Button>
                     </Link>
                     <Link to="/register">
                       <Button
-                        className={darkMode ? "bg-green-600" : "bg-green-400"}
+                        className={`${
+                          darkMode ? "bg-green-600" : "bg-green-400"
+                        } text-base w-24 h-10`}
                       >
-                        Register
+                        Sign up
                       </Button>
                     </Link>
                   </>

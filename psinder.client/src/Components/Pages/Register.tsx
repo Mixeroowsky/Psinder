@@ -12,7 +12,7 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { api } from "../../Helpers/Apis/AccountApi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../Helpers/Auth";
 
@@ -124,7 +124,16 @@ const Register = () => {
                 </FormItem>
               )}
             />
-            <Button className="mt-10 h-12 w-full" type="submit">
+            <div className="mt-6 ">
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                className="text-blue-400 underline hover:no-underline"
+              >
+                Log in
+              </Link>
+            </div>
+            <Button className="mt-6 h-12 w-full" type="submit">
               Submit
             </Button>
           </form>

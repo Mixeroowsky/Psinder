@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/Helpers/Auth";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,7 +24,6 @@ const Login = () => {
   const navigate = useNavigate();
   const { isAuthenticated, login, errorMessage } = useAuth();
   useEffect(() => {
-    console.log("dupa");
     if (isAuthenticated) {
       navigate("/");
     }
@@ -83,7 +82,16 @@ const Login = () => {
                 </FormItem>
               )}
             />
-            <Button className="mt-10 h-12 w-full" type="submit">
+            <div className="mt-6 ">
+              Don't have an account?{" "}
+              <Link
+                to="/register"
+                className="text-blue-400 underline hover:no-underline"
+              >
+                Sign up
+              </Link>
+            </div>
+            <Button className="mt-6 h-12 w-full" type="submit">
               Submit
             </Button>
           </form>
