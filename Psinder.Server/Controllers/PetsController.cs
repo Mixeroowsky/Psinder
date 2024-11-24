@@ -11,7 +11,8 @@ namespace Psinder.Server.Controllers
     [ApiController]
     public class PetsController(
         IWebHostEnvironment webHostEnvironment,
-        IPetService petService) : ControllerBase
+        IPetService petService,
+        IFileService fileService) : ControllerBase
     {
         private readonly IWebHostEnvironment _webHostEnvironment = webHostEnvironment;
         private readonly IPetService _petService = petService;
@@ -47,16 +48,36 @@ namespace Psinder.Server.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<PetDto>> PutPet(int id, PetDto pet)
+        public async Task<ActionResult<PetDto>> PutPet(int id, [FromForm] PetDto pet)
         {
             if (id != pet.Id)
             {
-                return BadRequest();
+                return BadRequest("Id in URL and form does not match");
             }
-
+            var existingPet = await _petService.GetPet(id);
+            if (existingPet == null)
+            {
+                return BadRequest($"Pet with id {id} not found");
+            }
+            string oldImage = existingPet.PhotoUrl;
+            if (pet.ImageFile != null)
+            {
+                if (pet.ImageFile?.Length > 1 * 5120 * 5120)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, "File size should not exceed 5 MB");
+                }
+                string[] allowedFileExtentions = [".jpg", ".jpeg", ".png"];
+                string createdImageName = await fileService.SaveFileAsync(pet.ImageFile, allowedFileExtentions);
+                pet.PhotoUrl = createdImageName;
+            }
+            if (existingPet.ImageFile != null)
+            {
+                fileService.DeleteFile(oldImage);
+            }
             try
             {
-                return await _petService.UpdatePet(pet);
+                var updatedPet = await _petService.UpdatePet(pet);
+                return Ok(updatedPet);
             }
             catch (DbUpdateConcurrencyException ex)
             {
@@ -65,7 +86,7 @@ namespace Psinder.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<PetDto>> PostPet(PetDto pet)
+        public async Task<ActionResult<PetDto>> PostPet([FromForm] PetDto pet)
         {
             try
             {
@@ -78,6 +99,13 @@ namespace Psinder.Server.Controllers
                 {
                     return BadRequest("Shelter missing for this pet");
                 }
+                if (pet.ImageFile?.Length > 1 * 5120 * 5120)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, "File size should not exceed 5 MB");
+                }
+                string[] allowedFileExtentions = [".jpg", ".jpeg", ".png"];
+                string createdImageName = await fileService.SaveFileAsync(pet.ImageFile, allowedFileExtentions);
+                pet.PhotoUrl = createdImageName;
                 var result = await _petService.AddPet(pet);
 
                 return CreatedAtAction(nameof(GetPet), new { id = result.Id }, result);
@@ -100,24 +128,15 @@ namespace Psinder.Server.Controllers
                     return NotFound($"Pet not found by id: {id}");
                 }
 
-                return await _petService.DeletePet(id);
+                await _petService.DeletePet(id);
+                fileService.DeleteFile(petToDelete.PhotoUrl);
+                return NoContent();
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error occured while deleting a pet" + ex.Message);
             }
         }
-        private async Task<string> UploadImage(string folderPath, IFormFile file)
-        {
-
-            folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
-
-            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
-
-            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
-
-            return "/" + folderPath;
-        }
-    }
+    }    
 }
 

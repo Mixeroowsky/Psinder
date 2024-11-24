@@ -23,6 +23,7 @@ namespace Psinder.Server.Dtos
         [Required]
         public BreedType BreedType { get; set; }
         public string PhotoUrl { get; set; }
+        public IFormFile ImageFile { get; set; }
         public int ShelterId { get; set; }
     }
 }
