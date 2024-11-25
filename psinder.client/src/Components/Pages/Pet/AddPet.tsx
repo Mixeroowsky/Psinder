@@ -20,6 +20,9 @@ import {
 import { Input } from "../../ui/input";
 import { Textarea } from "@/Components/ui/textarea";
 import FileUpload from "@/Helpers/FileUpload";
+import { api } from "../../../Helpers/Apis/PetsApi";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
   name: z.string().min(2).max(50),
@@ -33,6 +36,10 @@ const formSchema = z.object({
 });
 
 const AddPet = () => {
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+  const formData = new FormData();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,12 +51,34 @@ const AddPet = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log("dupa0");
+    if (values.image.size > 0) {
+      if (values.image.size < 5120 * 5120)
+        setMessage("Image size should be less than 5 MB");
+    }
+    formData.append("name", values.name);
+    formData.append("description", values.description);
+    formData.append("sex", values.sex.toString());
+    formData.append("age", values.age.toString());
+    formData.append("breedType", values.breedType.toString());
+    formData.append("shelterId", "1");
+    formData.append("imageFile", values.image);
+
+    try {
+      console.log("dupa");
+      await api.PostPet(formData);
+      setMessage("Pet successfully added");
+      navigate("/pets");
+    } catch (err: any) {
+      console.log("dupa2");
+      setMessage(err.message);
+    }
+  };
 
   return (
     <div className="">
+      <div className="m-10 text-xl">{message}</div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <div className="flex">
@@ -84,7 +113,6 @@ const AddPet = () => {
                         {...field}
                       />
                     </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}
@@ -109,7 +137,6 @@ const AddPet = () => {
                         <SelectItem value="1">Female</SelectItem>
                       </SelectContent>
                     </Select>
-
                     <FormMessage />
                   </FormItem>
                 )}
@@ -157,7 +184,6 @@ const AddPet = () => {
                         <SelectItem value="2">Other</SelectItem>
                       </SelectContent>
                     </Select>
-
                     <FormMessage />
                   </FormItem>
                 )}

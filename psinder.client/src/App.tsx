@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./Components/Pages/Login";
 import Register from "./Components/Pages/Register";
 import AddPet from "./Components/Pages/Pet/AddPet";
+import Pets from "./Components/Pages/Pet/Pets";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/addPet" element={<AddPet />} />
+          <Route path="/pets" element={<Pets />} />
         </Routes>
       </Router>
     </AuthProvider>

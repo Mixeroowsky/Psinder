@@ -12,7 +12,7 @@ export const api = {
 
     return response.json();
   },
-  GetPetById: async (id: number): Promise<any> => {
+  GetPetById: async (id: number): Promise<Pet> => {
     try {
       const response = await fetch(`/api/Pets/GetPet/${id}`, {
         method: "GET",
@@ -31,9 +31,7 @@ export const api = {
       throw error;
     }
   },
-  SearchPetByName: async (
-    name: string
-  ): Promise<{ isAuthenticated: boolean }> => {
+  SearchPetByName: async (name: string): Promise<Pet[]> => {
     const response = await fetch(`/api/Pets/SearchPetByName/${name}`, {
       method: "GET",
       headers: {
@@ -50,22 +48,7 @@ export const api = {
 
   PutPet: async (pet: Pet): Promise<void> => {
     const response = await fetch("/api/Pets/PutPet", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(pet),
-      credentials: "include",
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.message || "Error while adding a pet");
-    }
-  },
-  PostPet: async (pet: Pet): Promise<void> => {
-    const response = await fetch("/api/Pets/PostPet", {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -78,6 +61,18 @@ export const api = {
       throw new Error(
         error.message || "Error while editing pet's informations"
       );
+    }
+  },
+  PostPet: async (pet: FormData): Promise<void> => {
+    const response = await fetch("/api/Pets/PostPet", {
+      method: "POST",
+      body: pet,
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || "Error while adding a pet");
     }
   },
   DeletePet: async (id: number): Promise<any> => {
