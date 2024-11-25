@@ -70,7 +70,7 @@ namespace Psinder.Server.Controllers
                 string createdImageName = await fileService.SaveFileAsync(pet.ImageFile, allowedFileExtentions);
                 pet.PhotoUrl = createdImageName;
             }
-            if (existingPet.ImageFile != null)
+            if (pet.ImageFile != null)
             {
                 fileService.DeleteFile(oldImage);
             }

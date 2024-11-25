@@ -5,6 +5,7 @@ import Auth, { AuthProvider } from "./Helpers/Auth";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./Components/Pages/Login";
 import Register from "./Components/Pages/Register";
+import AddPet from "./Components/Pages/Pet/AddPet";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/addPet" element={<AddPet />} />
         </Routes>
       </Router>
     </AuthProvider>
