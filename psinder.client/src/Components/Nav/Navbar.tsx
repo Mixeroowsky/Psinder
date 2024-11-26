@@ -67,7 +67,7 @@ const Navbar = () => {
                   <Button
                     className={`${
                       darkMode ? "bg-green-600" : "bg-green-400"
-                    } font-weight-300`}
+                    } text-base w-24 h-10 font-bold`}
                     onClick={handleLogout}
                   >
                     Log out
@@ -78,7 +78,7 @@ const Navbar = () => {
                       <Button
                         className={`${
                           darkMode ? "bg-green-600" : "bg-green-400"
-                        } text-base w-24 h-10`}
+                        } text-base w-24 h-10 font-bold`}
                       >
                         Log In
                       </Button>
@@ -87,7 +87,7 @@ const Navbar = () => {
                       <Button
                         className={`${
                           darkMode ? "bg-green-600" : "bg-green-400"
-                        } text-base w-24 h-10`}
+                        } text-base w-24 h-10 font-bold`}
                       >
                         Sign up
                       </Button>

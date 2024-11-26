@@ -46,3 +46,10 @@ h3 {
   margin-right: 0;
   font-weight: bold;
 }
+p {
+  font-weight: 500;
+  font-size: 18px;
+}
+span {
+  font-weight: 300;
+}

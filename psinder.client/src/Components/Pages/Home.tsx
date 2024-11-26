@@ -7,7 +7,7 @@ const Home = () => {
   const [pets, setPets] = useState<Pet[]>([]);
   useEffect(() => {
     const fetchData = async () => {
-      const data = await api.GetAllPets(); // Pobierz dane z API
+      const data = await api.GetAllPets();
       const randomPets = data.sort(() => 0.5 - Math.random());
       setPets(randomPets.slice(0, 3));
     };
