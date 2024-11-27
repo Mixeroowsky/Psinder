@@ -29,6 +29,15 @@ td {
   padding-left: 1rem;
   padding-right: 1rem;
 }
+h1 {
+  display: block;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
 h2 {
   display: block;
   font-size: 3em;

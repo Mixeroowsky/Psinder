@@ -1,11 +1,11 @@
-import { Button } from "../ui/button";
-import { useAuth } from "../../Helpers/Auth";
-import { Switch } from "../ui/switch";
-import { Label } from "../ui/label";
+import { Button } from "../../ui/button";
+import { useAuth } from "../../../Helpers/Auth";
+import { Switch } from "../../ui/switch";
+import { Label } from "../../ui/label";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../../App.css";
-import logo from "../../assets/logo.png";
+import "../../../App.css";
+import logo from "../../../assets/logo.png";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -52,10 +52,14 @@ const Navbar = () => {
                 </h1>
                 <ul>
                   <li>
-                    <Link to="/">home</Link>
+                    <Link to="/">Home</Link>
+                  </li>
+
+                  <li>
+                    <Link to="/pets">All pets</Link>
                   </li>
                   <li>
-                    <Link to="/about">about</Link>
+                    <Link to="/about">About</Link>
                   </li>
                 </ul>
               </div>
@@ -67,7 +71,7 @@ const Navbar = () => {
                   <Button
                     className={`${
                       darkMode ? "bg-green-600" : "bg-green-400"
-                    } text-base w-24 h-10 font-bold`}
+                    } text-lg w-24 h-10 `}
                     onClick={handleLogout}
                   >
                     Log out
@@ -78,7 +82,7 @@ const Navbar = () => {
                       <Button
                         className={`${
                           darkMode ? "bg-green-600" : "bg-green-400"
-                        } text-base w-24 h-10 font-bold`}
+                        } text-lg w-24 h-10 `}
                       >
                         Log In
                       </Button>
@@ -87,7 +91,7 @@ const Navbar = () => {
                       <Button
                         className={`${
                           darkMode ? "bg-green-600" : "bg-green-400"
-                        } text-base w-24 h-10 font-bold`}
+                        } text-lg w-24 h-10 `}
                       >
                         Sign up
                       </Button>

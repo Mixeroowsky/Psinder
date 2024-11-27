@@ -60,12 +60,12 @@ const Pets = () => {
               key={pet.id}
               className="hover:shadow-lg transition-shadow duration-200 m-5"
             >
-              <CardHeader>
-                <CardTitle className="text-3xl">{pet.name}</CardTitle>
+              <CardHeader className="w-48">
+                <CardTitle className="text-3xl ">{pet.name}</CardTitle>
               </CardHeader>
               <CardContent className="flex justify-between">
                 <div>
-                  <div className="text-xl p-4">{pet.description}</div>
+                  <div className="text-lg p-4">{pet.description}</div>
                   <p className="mt-10">
                     Breed type:<span> {breedType(pet.breedType)}</span>
                   </p>
@@ -83,7 +83,7 @@ const Pets = () => {
                     </span>
                   </p>
                 </div>
-                <div className="text-center mb-10 mr-10 rounded-md p-3 border ">
+                <div className="text-center  mr-10 rounded-md p-3 border transform -translate-y-10">
                   {pet.photoUrl ? (
                     <img
                       src={`https://localhost:7290/uploads/${pet.photoUrl}`}
