@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Psinder.Server.Context;
 
@@ -11,9 +12,11 @@ using Psinder.Server.Context;
 namespace Psinder.Server.Migrations
 {
     [DbContext(typeof(PsinderDbContext))]
-    partial class PsinderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241127164343_shelteIdUser")]
+    partial class shelteIdUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,13 +99,7 @@ namespace Psinder.Server.Migrations
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Shelters");
                 });
@@ -120,6 +117,9 @@ namespace Psinder.Server.Migrations
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ShelterId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
@@ -142,23 +142,7 @@ namespace Psinder.Server.Migrations
 
             modelBuilder.Entity("Psinder.Server.Entities.Shelter", b =>
                 {
-                    b.HasOne("Psinder.Server.Entities.User", "User")
-                        .WithOne("Shelter")
-                        .HasForeignKey("Psinder.Server.Entities.Shelter", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Psinder.Server.Entities.Shelter", b =>
-                {
                     b.Navigation("Pets");
-                });
-
-            modelBuilder.Entity("Psinder.Server.Entities.User", b =>
-                {
-                    b.Navigation("Shelter");
                 });
 #pragma warning restore 612, 618
         }

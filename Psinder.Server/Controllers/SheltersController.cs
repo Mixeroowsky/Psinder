@@ -50,7 +50,7 @@ namespace Psinder.Server.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error occured while creating a shelter: " + ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occured while creating a shelter: " + ex.InnerException);
             }
         }
         //TODO zrobic update zeby szukało po id odpowiedni i ten przekazywało bo coś jest nie tak
@@ -68,7 +68,7 @@ namespace Psinder.Server.Controllers
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error occured while altering shelters data" + ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occured while altering shelters data" + ex.InnerException);
             }
         }
 
@@ -90,6 +90,18 @@ namespace Psinder.Server.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error occured while deleting a shelter" + ex.Message + ex.InnerException);
             }
+        }
+
+        [HttpGet("user")]
+        public async Task<ActionResult<int>> CheckUser(int id)
+        {
+            var shelter = await _shelterService.GetShelterByUser(id);
+            if (shelter == null)
+            {
+                return NotFound();
+            }
+            int userId = shelter.UserId;
+            return userId;
         }
     }
 }

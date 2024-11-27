@@ -52,6 +52,7 @@ namespace Psinder.Server.Services
         {
             List<Claim> claims =
             [
+                new Claim(ClaimTypes.NameIdentifier, users.Id.ToString()),
                 new Claim(ClaimTypes.Name, users.Username),
                 new Claim(ClaimTypes.Email, users.Email),
 

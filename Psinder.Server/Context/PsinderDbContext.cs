@@ -15,7 +15,11 @@ namespace Psinder.Server.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<User>();
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Shelter)
+                .WithOne(u => u.User)
+                .HasForeignKey<Shelter>(u => u.UserId)
+                .IsRequired();
             modelBuilder.Entity<Pet>()
                 .HasOne(p => p.Shelter)
                 .WithMany(p => p.Pets)

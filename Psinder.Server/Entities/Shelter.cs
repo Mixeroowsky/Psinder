@@ -12,5 +12,7 @@
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public ICollection<Pet> Pets { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Psinder.Server.Dtos;
 using Psinder.Server.Services;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -70,13 +71,15 @@ namespace Psinder.Server.Controllers
         public IActionResult CheckSession()
         {
             var userName = User.Identity?.Name;
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (userName != null)
             {
                 return Ok(
                 new
                 {
+                    userId,
                     isAuthenticated = true,
-                    user = userName
+                    userName
                 });
             }
             return Unauthorized();

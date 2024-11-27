@@ -2,15 +2,18 @@ import { Button } from "../../ui/button";
 import { useAuth } from "../../../Helpers/Auth";
 import { Switch } from "../../ui/switch";
 import { Label } from "../../ui/label";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../../App.css";
 import logo from "../../../assets/logo.png";
+import { ShelterContext } from "../../../Helpers/CheckShelter";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(true);
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
+  const shelterContext = useContext(ShelterContext);
+  const { shelterRegistered } = shelterContext;
 
   const handleLogout = async () => {
     await logout();
@@ -30,16 +33,16 @@ const Navbar = () => {
       <header>
         <div className="container">
           <nav
-            className={
+            className={`${
               darkMode
                 ? "bg-gradient-to-b from-green-900 from-0% to-green-950 to-100%"
                 : "bg-gradient-to-b from-green-500 from-0% to-green-700 to-100%"
-            }
+            } max-h-20`}
           >
             <div className="flex gap-4">
               <Link to="/">
                 <img
-                  className="mt-2 ml-2"
+                  className="mt-3 ml-2"
                   src={logo}
                   width="48"
                   height="64"
@@ -47,7 +50,7 @@ const Navbar = () => {
                 ></img>
               </Link>
               <div className="grid grid-cols-[100px_1fr] flex">
-                <h1 className="mt-1">
+                <h1 className="mt-0.5 translate-y-2">
                   <Link to="/">Psinder</Link>
                 </h1>
                 <ul>
@@ -68,14 +71,37 @@ const Navbar = () => {
             <div className="flex flex-box">
               <div className="mt-4 space-x-5">
                 {isAuthenticated ? (
-                  <Button
-                    className={`${
-                      darkMode ? "bg-green-600" : "bg-green-400"
-                    } text-lg w-24 h-10 `}
-                    onClick={handleLogout}
-                  >
-                    Log out
-                  </Button>
+                  <>
+                    {shelterRegistered ? (
+                      <Link to="/editShelter">
+                        <Button
+                          className={`${
+                            darkMode ? "bg-green-600" : "bg-green-400"
+                          } text-lg w-36 h-10 `}
+                        >
+                          View your shelter
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Link to="/addShelter">
+                        <Button
+                          className={`${
+                            darkMode ? "bg-green-600" : "bg-green-400"
+                          } text-lg w-36 h-10 `}
+                        >
+                          Register a shelter
+                        </Button>
+                      </Link>
+                    )}
+                    <Button
+                      className={`${
+                        darkMode ? "bg-green-600" : "bg-green-400"
+                      } text-lg w-24 h-10 `}
+                      onClick={handleLogout}
+                    >
+                      Log out
+                    </Button>
+                  </>
                 ) : (
                   <>
                     <Link to="/login">

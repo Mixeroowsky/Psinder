@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Psinder.Server.Context;
 
@@ -11,9 +12,11 @@ using Psinder.Server.Context;
 namespace Psinder.Server.Migrations
 {
     [DbContext(typeof(PsinderDbContext))]
-    partial class PsinderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241127170701_shelterForeignKey")]
+    partial class shelterForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

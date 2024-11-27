@@ -7,6 +7,7 @@ namespace Psinder.Server.Services
     {
         Task<List<ShelterDto>> GetAllShelters();
         Task<ShelterDto> GetShelterById(int id);
+        Task<ShelterDto> GetShelterByUser(int id);
         Task<ShelterDto> AddShelter(ShelterDto model);
         Task<ShelterDto> UpdateShelter(ShelterDto model);
         Task<Shelter> DeleteShelter(int id);

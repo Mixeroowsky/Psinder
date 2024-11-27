@@ -17,5 +17,6 @@ namespace Psinder.Server.Dtos
         [EmailAddress(ErrorMessage = "Invalid Email address")]
         public string Email { get; set; }
         public ICollection<PetDto> Pets { get; set; }
+        public int UserId { get; set; }
     }
 }

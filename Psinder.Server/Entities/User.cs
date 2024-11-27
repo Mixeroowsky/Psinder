@@ -8,5 +8,6 @@ namespace Psinder.Server.Entities
         public string Username { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
+        public Shelter Shelter { get; set; }
     }
 }

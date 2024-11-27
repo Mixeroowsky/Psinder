@@ -74,4 +74,23 @@ export const api = {
     }
     return response.status;
   },
+  CheckUser: async (id: number): Promise<number> => {
+    try {
+      const response = await fetch(`/api/Shelters/CheckUser/user/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch shelter with id ${id}`);
+      }
+
+      return response.json();
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
 };

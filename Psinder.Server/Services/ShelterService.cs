@@ -16,7 +16,11 @@ namespace Psinder.Server.Services
             var shelter = await _context.Shelters.Where(p => p.Id == id).FirstOrDefaultAsync();
             return _mapper.Map<ShelterDto>(shelter);
         }
-
+        public async Task<ShelterDto> GetShelterByUser(int id)
+        {
+            var shelter = await _context.Shelters.Where(p => p.UserId == id).FirstOrDefaultAsync();
+            return _mapper.Map<ShelterDto>(shelter);
+        }
         public async Task<List<ShelterDto>> GetAllShelters()
         {
             var shelters = await _context.Shelters.ToListAsync();

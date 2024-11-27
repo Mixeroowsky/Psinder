@@ -6,8 +6,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./Components/Pages/Login";
 import Register from "./Components/Pages/Register";
 import AddPet from "./Components/Pages/Pet/AddPet";
+import AddShelter from "./Components/Pages/Shelter/AddShelter";
 import Pets from "./Components/Pages/Pet/Pets";
 import About from "./Components/Pages/Nav/About";
+import EditShelter from "./Components/Pages/Shelter/EditShelter";
+import EditPet from "./Components/Pages/Pet/EditPet";
 
 const App = () => {
   return (
@@ -17,10 +20,14 @@ const App = () => {
         <Routes>
           <Route element={<Auth />}>
             <Route path="/" element={<Home />} />
+            <Route path="/addShelter" element={<AddShelter />} />
+            <Route path="/editShelter" element={<EditShelter />} />
+            <Route path="/addPet" element={<AddPet />} />
+            <Route path="/editPet" element={<EditPet />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/addPet" element={<AddPet />} />
+
           <Route path="/pets" element={<Pets />} />
           <Route path="/about" element={<About />} />
         </Routes>

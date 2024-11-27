@@ -20,7 +20,7 @@ const Home = () => {
         {pets.map((pets) => (
           <Card
             key={pets.id}
-            className="hover:shadow-lg transition-shadow duration-200"
+            className="shadow-md hover:shadow-lg transition-shadow duration-200"
           >
             <CardHeader>
               <CardTitle className="text-xl font-bold">{pets.name}</CardTitle>
@@ -30,7 +30,7 @@ const Home = () => {
                 <div>
                   <p className="text-base font-normal">{pets.description}</p>
                 </div>
-                <div className="text-center rounded-md border transform -translate-y-10">
+                <div className="text-center rounded-md border transform -translate-y-10 mr-6">
                   {pets.photoUrl ? (
                     <img
                       src={`https://localhost:7290/uploads/${pets.photoUrl}`}

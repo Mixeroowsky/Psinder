@@ -35,7 +35,7 @@ export const api = {
     }
   },
 
-  auth: async (): Promise<{ isAuthenticated: boolean }> => {
+  auth: async (): Promise<{ isAuthenticated: boolean; userId: string }> => {
     const response = await fetch("/api/Account/auth", {
       method: "GET",
       credentials: "include",

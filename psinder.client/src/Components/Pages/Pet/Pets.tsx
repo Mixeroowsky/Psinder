@@ -49,7 +49,7 @@ const Pets = () => {
 
   return (
     <div className="flex p-10 justify-center ">
-      <div className="p-5 max-w-screen-xl rounded-md border w-3/4">
+      <div className="p-5 max-w-screen-xl rounded-md border w-6/12">
         {isLoading ? (
           <div className="text-center">
             <Spinner />
@@ -58,12 +58,12 @@ const Pets = () => {
           pets.map((pet) => (
             <Card
               key={pet.id}
-              className="hover:shadow-lg transition-shadow duration-200 m-5"
+              className="shadow-md hover:shadow-lg transition-shadow duration-200 m-5 "
             >
               <CardHeader className="w-48">
                 <CardTitle className="text-3xl ">{pet.name}</CardTitle>
               </CardHeader>
-              <CardContent className="flex justify-between">
+              <CardContent className="flex justify-between mb-5">
                 <div>
                   <div className="text-lg p-4">{pet.description}</div>
                   <p className="mt-10">
@@ -76,14 +76,14 @@ const Pets = () => {
                     Sex:<span> {sex(pet.sex)}</span>
                   </p>
                   <p>
-                    At shelter:{" "}
+                    At shelter:
                     <span>
                       {" "}
                       <GetShelterName id={pet.shelterId} />
                     </span>
                   </p>
                 </div>
-                <div className="text-center  mr-10 rounded-md p-3 border transform -translate-y-10">
+                <div className="text-center  mr-10 rounded-md p-3 border transform -mt-10">
                   {pet.photoUrl ? (
                     <img
                       src={`https://localhost:7290/uploads/${pet.photoUrl}`}
