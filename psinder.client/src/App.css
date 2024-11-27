@@ -62,3 +62,13 @@ p {
 span {
   font-weight: 300;
 }
+.text-lg {
+  font-size: 1.125rem;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.h-6 {
+  height: 1.5rem;
+  width: 1.5rem;
+}
