@@ -52,14 +52,13 @@ namespace Psinder.Server.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error occured while creating a shelter: " + ex.InnerException);
             }
-        }
-        //TODO zrobic update zeby szukało po id odpowiedni i ten przekazywało bo coś jest nie tak
+        }        
         [HttpPut("{id}")]
         public async Task<ActionResult<ShelterDto>> UpdateShelter(int id, [FromBody] ShelterDto shelter)
         {            
             if (id != shelter.Id)
             {
-                return BadRequest($"Could not find shelter by id {id}");
+                return BadRequest($"Shelter id from form is different than shelter id from request - Id from request: {id}, Id from form: {shelter.Id}");
             }
 
             try
