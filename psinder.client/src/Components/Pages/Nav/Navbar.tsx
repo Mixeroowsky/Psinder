@@ -42,7 +42,7 @@ const Navbar = () => {
             <div className="flex gap-4">
               <Link to="/">
                 <img
-                  className="mt-3 ml-2"
+                  className="mt-3 ml-4"
                   src={logo}
                   width="48"
                   height="64"
