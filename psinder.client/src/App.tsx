@@ -11,12 +11,15 @@ import Pets from "./Components/Pages/Pet/Pets";
 import About from "./Components/Pages/Nav/About";
 import EditShelter from "./Components/Pages/Shelter/EditShelter";
 import EditPet from "./Components/Pages/Pet/EditPet";
+import CheckShelterProvider from "./Helpers/CheckShelter";
 
 const App = () => {
   return (
     <AuthProvider>
       <Router>
-        <Navbar />
+        <CheckShelterProvider>
+          <Navbar />
+        </CheckShelterProvider>
         <Routes>
           <Route element={<Auth />}>
             <Route path="/" element={<Home />} />

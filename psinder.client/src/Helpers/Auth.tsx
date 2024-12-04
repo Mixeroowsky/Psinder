@@ -16,6 +16,7 @@ interface AuthContextType {
   login: (username: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   errorMessage: string | null;
+  userId: number;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -23,6 +24,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [userId, setUserId] = useState<number>(-1);
 
   const login = async (email: string, password: string): Promise<void> => {
     try {
@@ -44,8 +46,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await api.auth();
+        const response = await api.auth();
         setIsAuthenticated(true);
+        setUserId(parseInt(response.userId));
       } catch {
         setIsAuthenticated(false);
       }
@@ -55,7 +58,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, login, logout, errorMessage }}
+      value={{ isAuthenticated, login, logout, errorMessage, userId }}
     >
       {children}
     </AuthContext.Provider>

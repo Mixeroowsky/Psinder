@@ -58,10 +58,7 @@ const Home = () => {
       <h2 className="m-8 pl-10">Check our shelters</h2>
       <div className="m-8 pl-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl px-4">
         {shelters.map((shelter) => (
-          <Card
-            key={shelter.id}
-            className="shadow-md hover:shadow-lg transition-shadow duration-200"
-          >
+          <Card className="shadow-md hover:shadow-lg transition-shadow duration-200">
             <CardHeader>
               <CardTitle className="text-xl font-bold">
                 {shelter.name}

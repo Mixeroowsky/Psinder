@@ -49,10 +49,13 @@ export const api = {
       );
     }
   },
-  PostShelter: async (Shelter: FormData): Promise<void> => {
+  PostShelter: async (shelter: Shelter): Promise<void> => {
     const response = await fetch("/api/Shelters/AddShelter", {
       method: "POST",
-      body: Shelter,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(shelter),
       credentials: "include",
     });
 

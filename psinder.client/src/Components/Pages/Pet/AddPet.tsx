@@ -104,7 +104,7 @@ const AddPet = () => {
                 control={form.control}
                 name="description"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="mt-4">
                     <FormLabel>Description</FormLabel>
                     <FormControl>
                       <Textarea
@@ -121,7 +121,7 @@ const AddPet = () => {
                 control={form.control}
                 name="sex"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="mt-4">
                     <FormLabel>Sex</FormLabel>
                     <Select
                       onValueChange={field.onChange}
@@ -145,7 +145,7 @@ const AddPet = () => {
                 control={form.control}
                 name="age"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="mt-4">
                     <FormLabel>Age</FormLabel>
                     <FormControl>
                       <Input
@@ -167,7 +167,7 @@ const AddPet = () => {
                 control={form.control}
                 name="breedType"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="mt-4">
                     <FormLabel>Breed type</FormLabel>
                     <Select
                       onValueChange={field.onChange}
