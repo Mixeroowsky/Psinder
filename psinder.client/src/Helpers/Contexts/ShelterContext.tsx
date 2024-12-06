@@ -7,6 +7,7 @@ import {
 } from "react";
 import { api as shelterApi } from "../Apis/ShelterApi";
 import { api as accountApi } from "../Apis/AccountApi";
+import { useNavigate } from "react-router-dom";
 
 interface ProviderProps {
   children: ReactNode;
@@ -22,20 +23,19 @@ export const ShelterContext = createContext<ShelterContextType | undefined>(
 export const ShelterProvider = ({ children }: ProviderProps) => {
   const [shelterId, setShelterId] = useState<number | null>(null);
 
+  const navigate = useNavigate();
   useEffect(() => {
     const checkShelter = async () => {
       try {
         const userId = parseInt((await accountApi.auth()).userId);
         const response = await shelterApi.CheckUser(userId);
-        if (response != null) {
-          setShelterId(response);
-        } else {
-          setShelterId(null);
-        }
-      } catch {}
+        setShelterId(response);
+      } catch {
+        setShelterId(null);
+      }
     };
     checkShelter();
-  }, []);
+  }, [navigate]);
 
   return (
     <ShelterContext.Provider value={{ shelterId }}>

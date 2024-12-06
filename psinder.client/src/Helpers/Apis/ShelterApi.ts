@@ -79,7 +79,6 @@ export const api = {
   },
   CheckUser: async (id: number): Promise<number> => {
     try {
-      console.log("a " + id);
       const response = await fetch(`/api/Shelters/ShelterByUserId/${id}`, {
         method: "GET",
         headers: {
@@ -90,7 +89,6 @@ export const api = {
       if (!response.ok) {
         throw new Error(`Failed to fetch shelter with id ${id}`);
       }
-
       return response.json();
     } catch (error) {
       console.error(error);
