@@ -66,7 +66,7 @@ export const api = {
   },
   DeleteShelter: async (id: number): Promise<any> => {
     const response = await fetch(`/api/Shelters/DeleteShelter/${id}`, {
-      method: "GET",
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },

@@ -46,6 +46,7 @@ const AddEditShelter = () => {
   const { id } = useParams();
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [forEdit, setForEdit] = useState(false);
   const [defaultValues, setDefaultValues] = useState<
     z.infer<typeof formSchema>
   >({
@@ -69,13 +70,13 @@ const AddEditShelter = () => {
 
   useEffect(() => {
     const fetchShelter = async () => {
-      console.log(id);
       if (!id) return;
 
       try {
         setIsLoading(true);
-        const response = await fetch(`/api/Shelter/${id}`);
+        const response = await fetch(`/api/Shelters/GetShelterById/${id}`);
         if (response.ok) {
+          setForEdit(true);
           const data = await response.json();
           setDefaultValues({
             name: data.name,
@@ -87,11 +88,13 @@ const AddEditShelter = () => {
             email: data.email,
             phoneNumber: data.phoneNumber,
           });
+          console.log(defaultValues);
         } else {
           console.error("Failed to fetch shelter data");
         }
       } catch (error) {
         console.error("Error:", error);
+        setForEdit(false);
       } finally {
         setIsLoading(false);
       }
@@ -101,6 +104,7 @@ const AddEditShelter = () => {
   }, [id]);
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log(userId);
     if (userId != null) {
       const shelter: Shelter = {
         name: values.name,
@@ -125,7 +129,17 @@ const AddEditShelter = () => {
       setMessage("Error while adding a shelter - user not logged in");
     }
   };
-
+  const deleteShelter = async () => {
+    if (
+      confirm("Are you sure you want to delete your shelter?") &&
+      id != null
+    ) {
+      try {
+        await api.DeleteShelter(parseInt(id));
+      } catch {}
+      navigate("/");
+    }
+  };
   return (
     <div className="flex p-10 justify-center ">
       {isLoading ? (
@@ -139,7 +153,11 @@ const AddEditShelter = () => {
             className="space-y-3 w-1/2"
           >
             <h1 className="danger text-red-500">{message}</h1>
-            <h1 className="mb-10">Adding new shelter</h1>
+            {forEdit ? (
+              <h1 className="mb-10">Edit your shelter</h1>
+            ) : (
+              <h1 className="mb-10">Adding new shelter</h1>
+            )}
             <FormField
               control={form.control}
               name="name"
@@ -256,9 +274,21 @@ const AddEditShelter = () => {
                 </FormItem>
               )}
             />
-            <Button className="mt-8 w-24" type="submit">
-              Submit
-            </Button>
+            <div className="flex flex-row justify-between ">
+              <Button className="mt-8 w-24" type="submit">
+                Submit
+              </Button>
+              {forEdit && (
+                <Button
+                  variant="destructive"
+                  className="mt-8"
+                  type="button"
+                  onClick={deleteShelter}
+                >
+                  Delete your shelter
+                </Button>
+              )}
+            </div>
           </form>
         </Form>
       )}

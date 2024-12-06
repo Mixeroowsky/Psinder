@@ -47,6 +47,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const checkAuth = async () => {
       try {
         const response = await api.auth();
+        console.log("dupa?");
         setIsAuthenticated(true);
         setUserId(parseInt(response.userId));
       } catch {
