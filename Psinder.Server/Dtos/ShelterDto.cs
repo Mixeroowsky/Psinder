@@ -10,8 +10,8 @@ namespace Psinder.Server.Dtos
         [RegularExpression("\\d{2}-\\d{3}", ErrorMessage = "Enter a valid postal code in format: 12-123")]
         public string PostCode { get; set; }
         public string Street { get; set; }
-        public int BuldingNumber { get; set; }
-        public int ApartementNumber { get; set; }
+        public int BuildingNumber { get; set; }
+        public int ApartmentNumber { get; set; }
         [Phone(ErrorMessage = "Invalid phone number")]
         public string PhoneNumber { get; set; }
         [EmailAddress(ErrorMessage = "Invalid Email address")]

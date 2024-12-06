@@ -31,12 +31,12 @@ const formSchema = z.object({
     .refine((val) => !isNaN(val), {
       message: "Building number must be a number.",
     }),
-  apartementNumber: z
+  apartmentNumber: z
     .string()
     .max(9)
     .transform((val) => parseFloat(val))
     .refine((val) => !isNaN(val), {
-      message: "Apartement number must be a number.",
+      message: "Apartment number must be a number.",
     }),
   email: z.string().email(),
   phoneNumber: z.string().max(9, "Enter a valid phone number"),
@@ -47,27 +47,14 @@ const AddEditShelter = () => {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [forEdit, setForEdit] = useState(false);
-  const [defaultValues, setDefaultValues] = useState<
-    z.infer<typeof formSchema>
-  >({
-    name: "",
-    city: "",
-    postCode: "",
-    street: "",
-    buildingNumber: 0,
-    apartementNumber: 0,
-    email: "",
-    phoneNumber: "",
-  });
   const navigate = useNavigate();
 
   const { userId } = useAuth();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues,
   });
-
+  const { reset } = form;
   useEffect(() => {
     const fetchShelter = async () => {
       if (!id) return;
@@ -78,17 +65,16 @@ const AddEditShelter = () => {
         if (response.ok) {
           setForEdit(true);
           const data = await response.json();
-          setDefaultValues({
+          reset({
             name: data.name,
             city: data.city,
             postCode: data.postCode,
             street: data.street,
-            buildingNumber: data.buildingNumber,
-            apartementNumber: data.apartementNumber,
+            buildingNumber: data.buildingNumber.toString(),
+            apartmentNumber: data.apartmentNumber.toString(),
             email: data.email,
             phoneNumber: data.phoneNumber,
           });
-          console.log(defaultValues);
         } else {
           console.error("Failed to fetch shelter data");
         }
@@ -104,7 +90,6 @@ const AddEditShelter = () => {
   }, [id]);
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(userId);
     if (userId != null) {
       const shelter: Shelter = {
         name: values.name,
@@ -112,18 +97,28 @@ const AddEditShelter = () => {
         postCode: values.postCode,
         street: values.street,
         buildingNumber: values.buildingNumber,
-        apartmentNumber: values.apartementNumber,
+        apartmentNumber: values.apartmentNumber,
         phoneNumber: values.phoneNumber,
         email: values.email,
         userId: userId,
       };
-
-      try {
-        await api.PostShelter(shelter);
-        setMessage("Shelter successfully registered");
-        navigate("/");
-      } catch (err: any) {
-        setMessage(err.message);
+      if (forEdit) {
+        try {
+          if (id != null) {
+            await api.PutShelter(parseInt(id), shelter);
+            navigate("/");
+          }
+        } catch (err: any) {
+          setMessage(err.message);
+        }
+      } else {
+        try {
+          await api.PostShelter(shelter);
+          setMessage("Shelter successfully registered");
+          navigate("/");
+        } catch (err: any) {
+          setMessage(err.message);
+        }
       }
     } else {
       setMessage("Error while adding a shelter - user not logged in");
@@ -165,7 +160,11 @@ const AddEditShelter = () => {
                 <FormItem>
                   <FormLabel>Shelter name</FormLabel>
                   <FormControl>
-                    <Input className=" h-12 max-w-sm" {...field} />
+                    <Input
+                      placeholder="Shelter name"
+                      className=" h-12 max-w-sm"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -178,7 +177,11 @@ const AddEditShelter = () => {
                 <FormItem>
                   <FormLabel>City</FormLabel>
                   <FormControl>
-                    <Input className="h-12 max-w-sm" {...field} />
+                    <Input
+                      placeholder="City"
+                      className="h-12 max-w-sm"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -191,7 +194,12 @@ const AddEditShelter = () => {
                 <FormItem>
                   <FormLabel>Post code</FormLabel>
                   <FormControl>
-                    <Input {...field} maxLength={6} className="h-12 max-w-24" />
+                    <Input
+                      placeholder="Post code"
+                      {...field}
+                      maxLength={6}
+                      className="h-12 max-w-24"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -204,7 +212,11 @@ const AddEditShelter = () => {
                 <FormItem>
                   <FormLabel>Street</FormLabel>
                   <FormControl>
-                    <Input className="h-12 max-w-sm" {...field} />
+                    <Input
+                      placeholder="Street"
+                      className="h-12 max-w-sm"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -219,6 +231,7 @@ const AddEditShelter = () => {
                   <FormControl>
                     <Input
                       type="number"
+                      placeholder="Building number"
                       className="h-12 max-w-sm [&::-webkit-inner-spin-button]:appearance-none"
                       {...field}
                     />
@@ -229,13 +242,14 @@ const AddEditShelter = () => {
             />
             <FormField
               control={form.control}
-              name="apartementNumber"
+              name="apartmentNumber"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Apartement number</FormLabel>
+                  <FormLabel>Apartment number</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
+                      placeholder="Apartment number"
                       className=" h-12 max-w-sm [&::-webkit-inner-spin-button]:appearance-none"
                       {...field}
                     />
@@ -253,6 +267,7 @@ const AddEditShelter = () => {
                   <FormControl>
                     <Input
                       type="number"
+                      placeholder="Phone number"
                       className=" h-12 max-w-sm [&::-webkit-inner-spin-button]:appearance-none"
                       {...field}
                     />
@@ -268,7 +283,11 @@ const AddEditShelter = () => {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input className=" h-12 max-w-sm" {...field} />
+                    <Input
+                      placeholder="Email"
+                      className=" h-12 max-w-sm"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

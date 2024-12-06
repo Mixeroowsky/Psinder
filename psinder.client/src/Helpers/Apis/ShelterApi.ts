@@ -32,8 +32,8 @@ export const api = {
     }
   },
 
-  PutShelter: async (shelter: Shelter): Promise<void> => {
-    const response = await fetch("/api/Shelters/UpdateShelter", {
+  PutShelter: async (id: number, shelter: Shelter): Promise<void> => {
+    const response = await fetch(`/api/Shelters/UpdateShelter/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

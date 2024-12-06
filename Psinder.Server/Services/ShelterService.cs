@@ -44,8 +44,8 @@ namespace Psinder.Server.Services
                 result.City = model.City;
                 result.PostCode = model.PostCode;
                 result.Street = model.Street;
-                result.BuldingNumber = model.BuldingNumber;
-                result.ApartementNumber = model.ApartementNumber;
+                result.BuildingNumber = model.BuildingNumber;
+                result.ApartmentNumber = model.ApartmentNumber;
                 result.PhoneNumber = model.PhoneNumber;
                 result.Email = model.Email;
                 await _context.SaveChangesAsync();

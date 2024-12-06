@@ -56,11 +56,7 @@ namespace Psinder.Server.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<ShelterDto>> UpdateShelter(int id, [FromBody] ShelterDto shelter)
         {            
-            if (id != shelter.Id)
-            {
-                return BadRequest($"Shelter id from form is different than shelter id from request - Id from request: {id}, Id from form: {shelter.Id}");
-            }
-
+            shelter.Id = id;
             try
             {
                 return await _shelterService.UpdateShelter(shelter);
