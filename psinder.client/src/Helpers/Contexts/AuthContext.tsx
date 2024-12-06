@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import { Outlet } from "react-router-dom";
-import { api } from "./Apis/AccountApi";
+import { api } from "../Apis/AccountApi";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -16,7 +16,7 @@ interface AuthContextType {
   login: (username: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   errorMessage: string | null;
-  userId: number;
+  userId: number | null;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -24,7 +24,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [userId, setUserId] = useState<number>(-1);
+  const [userId, setUserId] = useState<number | null>(null);
 
   const login = async (email: string, password: string): Promise<void> => {
     try {

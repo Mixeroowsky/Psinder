@@ -79,7 +79,8 @@ export const api = {
   },
   CheckUser: async (id: number): Promise<number> => {
     try {
-      const response = await fetch(`/api/Shelters/CheckUser/user/${id}`, {
+      console.log("a " + id);
+      const response = await fetch(`/api/Shelters/ShelterByUserId/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

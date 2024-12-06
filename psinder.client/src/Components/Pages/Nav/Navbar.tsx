@@ -1,20 +1,18 @@
 import { Button } from "../../ui/button";
-import { useAuth } from "../../../Helpers/Auth";
+import { useAuth } from "../../../Helpers/Contexts/AuthContext";
 import { Switch } from "../../ui/switch";
 import { Label } from "../../ui/label";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../../App.css";
 import logo from "../../../assets/logo.png";
-import { ShelterContext } from "../../../Helpers/CheckShelter";
+import { shelterIdContext } from "../../../Helpers/Contexts/ShelterContext";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(true);
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
-  const shelterContext = useContext(ShelterContext);
-  const { shelterRegistered } = shelterContext;
-
+  const { shelterId } = shelterIdContext();
   const handleLogout = async () => {
     await logout();
     navigate("/");
@@ -50,10 +48,10 @@ const Navbar = () => {
                 ></img>
               </Link>
               <div className="grid grid-cols-[100px_1fr] flex">
-                <h1 className="mt-0.5 translate-y-2">
+                <h1 className="mt-0 translate-y-2">
                   <Link to="/">Psinder</Link>
                 </h1>
-                <ul>
+                <ul className="max-h-20">
                   <li>
                     <Link to="/">Home</Link>
                   </li>
@@ -72,7 +70,7 @@ const Navbar = () => {
               <div className="mt-4 space-x-5">
                 {isAuthenticated ? (
                   <>
-                    {shelterRegistered ? (
+                    {shelterId != null ? (
                       <>
                         <Link to="/addPet">
                           <Button
@@ -89,15 +87,15 @@ const Navbar = () => {
                               stroke="currentColor"
                             >
                               <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M12 4v16m8-8H4"
                               />
                             </svg>
                           </Button>
                         </Link>
-                        <Link to="/editShelter">
+                        <Link to={`/shelter/edit/${shelterId}`}>
                           <Button
                             className={`${
                               darkMode ? "bg-green-600" : "bg-green-400"
@@ -108,7 +106,7 @@ const Navbar = () => {
                         </Link>
                       </>
                     ) : (
-                      <Link to="/addShelter">
+                      <Link to="/shelter/add">
                         <Button
                           className={`${
                             darkMode ? "bg-green-600" : "bg-green-400"

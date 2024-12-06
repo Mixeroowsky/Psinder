@@ -14,7 +14,7 @@ import { Input } from "../ui/input";
 import { api } from "../../Helpers/Apis/AccountApi";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../../Helpers/Auth";
+import { useAuth } from "../../Helpers/Contexts/AuthContext";
 
 const formSchema = z
   .object({

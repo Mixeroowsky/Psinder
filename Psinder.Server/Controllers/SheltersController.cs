@@ -91,16 +91,16 @@ namespace Psinder.Server.Controllers
             }
         }
 
-        [HttpGet("user/{id}")]
-        public async Task<ActionResult<int>> CheckUser(int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<int>> ShelterByUserId(int id)
         {
             var shelter = await _shelterService.GetShelterByUser(id);
             if (shelter == null)
             {
                 return NotFound();
             }
-            int userId = shelter.UserId;
-            return userId;
+            int shelterId = shelter.Id;
+            return shelterId;
         }
     }
 }
