@@ -1,4 +1,3 @@
-import { Button } from "@/Components/ui/button";
 import {
   CardHeader,
   CardTitle,
@@ -7,8 +6,10 @@ import {
   CardFooter,
   Card,
 } from "@/Components/ui/card";
-import { api } from "@/Helpers/Apis/PetsApi";
+import { api as petApi } from "@/Helpers/Apis/PetsApi";
+import { api as shelterApi } from "@/Helpers/Apis/ShelterApi";
 import { Pet } from "@/Helpers/Interfaces/PetInterface";
+import { Shelter } from "@/Helpers/Interfaces/ShelterInterface";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -23,6 +24,19 @@ const PetDetails = () => {
     photoUrl: "",
     shelterId: 0,
   });
+
+  const [shelter, setShelter] = useState<Shelter>({
+    name: "",
+    city: "",
+    postCode: "",
+    street: "",
+    buildingNumber: 0,
+    apartmentNumber: 0,
+    phoneNumber: "",
+    email: "",
+    userId: 0,
+  });
+
   const { id } = useParams();
   const breedType = (type: number) => {
     switch (type) {
@@ -41,17 +55,33 @@ const PetDetails = () => {
     const petData = async () => {
       if (id != null) {
         try {
-          const data = await api.GetPetById(parseInt(id));
+          const petData = await petApi.GetPetById(parseInt(id));
           setPet({
-            id: data.id,
-            name: data.name,
-            age: data.age,
-            sex: data.sex,
-            breedType: data.breedType,
-            description: data.description,
-            photoUrl: data.photoUrl,
-            shelterId: data.shelterId,
+            id: petData.id,
+            name: petData.name,
+            age: petData.age,
+            sex: petData.sex,
+            breedType: petData.breedType,
+            description: petData.description,
+            photoUrl: petData.photoUrl,
+            shelterId: petData.shelterId,
           });
+          if (petData.shelterId != null) {
+            const shelterData = await shelterApi.GetShelterById(
+              petData.shelterId
+            );
+            setShelter({
+              name: shelterData.name,
+              city: shelterData.city,
+              postCode: shelterData.postCode,
+              street: shelterData.street,
+              buildingNumber: shelterData.buildingNumber,
+              apartmentNumber: shelterData.apartmentNumber,
+              phoneNumber: shelterData.phoneNumber,
+              email: shelterData.email,
+              userId: shelterData.userId,
+            });
+          }
         } catch {}
       }
     };
@@ -88,15 +118,41 @@ const PetDetails = () => {
             <span className="text-gray-600 font-medium">Age:</span>
             <span>{pet.age} years</span>
           </div>
-          <div className="flex justify-between items-center">
-            <span className="text-gray-600 font-medium">Shelter:</span>
-            <span className="text-blue-600 font-semibold">{pet.shelterId}</span>
-          </div>
         </CardContent>
-        <CardFooter className="flex justify-center">
-          <Button variant="default" className="w-full">
-            Contact Shelter
-          </Button>
+        <hr />
+        <CardFooter className="flex flex-col justify-between ">
+          <div>
+            <h3>Shelter contact:</h3>
+          </div>
+          <div className="flex flex-col space-y-4 p-4 flex-grow  w-full justify-between">
+            <div className="flex justify-between items-center">
+              <span className="text-gray-600 font-medium">Name:</span>
+              {shelter.name}
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-gray-600 font-medium">City:</span>
+              {shelter.city}
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-gray-600 font-medium">Address:</span>
+              <span>
+                {shelter.street + " " + shelter.buildingNumber}/
+                {shelter.apartmentNumber}{" "}
+              </span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-gray-600 font-medium">Phone number:</span>
+              <span className="text-blue-600 font-semibold">
+                {shelter.phoneNumber}
+              </span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-gray-600 font-medium">Email address:</span>
+              <span className="text-blue-600 font-semibold">
+                {shelter.email}
+              </span>
+            </div>
+          </div>
         </CardFooter>
       </Card>
     </div>
