@@ -7,7 +7,7 @@ import {
 } from "react";
 import { Outlet } from "react-router-dom";
 import { api } from "../Apis/AccountApi";
-
+import { Navigate } from "react-router-dom";
 interface AuthProviderProps {
   children: ReactNode;
 }
@@ -47,7 +47,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const checkAuth = async () => {
       try {
         const response = await api.auth();
-        console.log("dupa?");
         setIsAuthenticated(true);
         setUserId(parseInt(response.userId));
       } catch {
@@ -74,8 +73,8 @@ export const useAuth = (): AuthContextType => {
 };
 
 const Auth = () => {
-  useAuth();
-  return <Outlet />;
+  const { isAuthenticated } = useAuth();
+  return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default Auth;

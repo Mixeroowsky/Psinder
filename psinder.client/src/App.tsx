@@ -20,8 +20,8 @@ const App = () => {
           <Navbar />
         </ShelterProvider>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route element={<Auth />}>
-            <Route path="/" element={<Home />} />
             <Route path="/shelter/add" element={<AddEditShelter />} />
             <Route path="/shelter/edit/:id" element={<AddEditShelter />} />
             <Route path="/pet/add" element={<AddEditPet />} />

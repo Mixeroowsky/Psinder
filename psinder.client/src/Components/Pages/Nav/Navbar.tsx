@@ -72,7 +72,7 @@ const Navbar = () => {
                   <>
                     {shelterId != null ? (
                       <>
-                        <Link to="/addPet">
+                        <Link to="/pet/add">
                           <Button
                             className={`${
                               darkMode ? "bg-green-600" : "bg-green-400"
