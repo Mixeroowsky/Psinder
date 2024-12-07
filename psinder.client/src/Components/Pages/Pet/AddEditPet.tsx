@@ -52,7 +52,6 @@ const AddPet = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log("dupa0");
     if (values.image.size > 0) {
       if (values.image.size < 5120 * 5120)
         setMessage("Image size should be less than 5 MB");
@@ -66,12 +65,10 @@ const AddPet = () => {
     formData.append("imageFile", values.image);
 
     try {
-      console.log("dupa");
       await api.PostPet(formData);
       setMessage("Pet successfully added");
       navigate("/pets");
     } catch (err: any) {
-      console.log("dupa2");
       setMessage(err.message);
     }
   };

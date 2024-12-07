@@ -10,6 +10,7 @@ import Pets from "./Components/Pages/Pet/Pets";
 import About from "./Components/Pages/Nav/About";
 import { ShelterProvider } from "./Helpers/Contexts/ShelterContext";
 import AddEditPet from "./Components/Pages/Pet/AddEditPet";
+import PetDetails from "./Components/Pages/Pet/PetDetails";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
 
           <Route path="/pets" element={<Pets />} />
           <Route path="/about" element={<About />} />
+          <Route path="/pets/:id" element={<PetDetails />} />
         </Routes>
       </Router>
     </AuthProvider>
