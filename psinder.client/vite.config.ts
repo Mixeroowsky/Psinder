@@ -40,7 +40,22 @@ if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
   }
 }
 
-// https://vitejs.dev/config/
+const getHttpsConfig = () => {
+  if (process.env.NODE_ENV === "production") {
+    return {
+      key: fs.readFileSync("/etc/letsencrypt/live/api.tromba.art/privkey.pem"),
+      cert: fs.readFileSync(
+        "/etc/letsencrypt/live/api.tromba.art/fullchain.pem"
+      ),
+    };
+  } else {
+    return {
+      key: fs.readFileSync(keyFilePath),
+      cert: fs.readFileSync(certFilePath),
+    };
+  }
+};
+
 export default defineConfig({
   plugins: [plugin()],
   resolve: {
@@ -51,7 +66,10 @@ export default defineConfig({
   server: {
     proxy: {
       "^/api": {
-        target: "https://localhost:7290",
+        target:
+          process.env.NODE_ENV === "production"
+            ? "https://api.stojek.art"
+            : "https://localhost:7290",
         secure: false,
         changeOrigin: true,
         configure: (proxy) => {
@@ -66,9 +84,10 @@ export default defineConfig({
       },
     },
     port: 5173,
-    https: {
-      key: fs.readFileSync(keyFilePath),
-      cert: fs.readFileSync(certFilePath),
-    },
+    https: getHttpsConfig(),
+  },
+  build: {
+    outDir: "dist",
+    sourcemap: process.env.NODE_ENV === "production" ? false : true,
   },
 });

@@ -47,6 +47,8 @@ builder.Services.AddCors(o =>
     o.AddPolicy(name: frontendOrigin, policy =>
     {
         policy.AllowCredentials().WithOrigins("http://localhost:5173").AllowAnyHeader().AllowAnyMethod();
+        policy.AllowCredentials().WithOrigins("http://stojek.art/").AllowAnyHeader().AllowAnyMethod();
+        policy.AllowCredentials().WithOrigins("https://stojek.art/").AllowAnyHeader().AllowAnyMethod();
     });
 });
 builder.Services.AddScoped<IPetService, PetService>();
