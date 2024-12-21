@@ -10,10 +10,10 @@ const getHttpsConfig = () => {
   if (process.env.NODE_ENV === "production") {
     return {
       key: fs.readFileSync(
-        "/etc/letsencrypt/archive/api.stojek.art/privkey.pem"
+        "/etc/letsencrypt/archive/api.stojek.art/privkey1.pem"
       ),
       cert: fs.readFileSync(
-        "/etc/letsencrypt/archive/api.stojek.art/fullchain.pem"
+        "/etc/letsencrypt/archive/api.stojek.art/fullchain1.pem"
       ),
     };
   } else {
