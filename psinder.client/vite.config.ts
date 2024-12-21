@@ -9,9 +9,9 @@ import cookie from "cookie";
 const getHttpsConfig = () => {
   if (process.env.NODE_ENV === "production") {
     return {
-      key: fs.readFileSync("/etc/letsencrypt/live/api.tromba.art/privkey.pem"),
+      key: fs.readFileSync("/etc/letsencrypt/live/api.stojek.art/privkey.pem"),
       cert: fs.readFileSync(
-        "/etc/letsencrypt/live/api.tromba.art/fullchain.pem"
+        "/etc/letsencrypt/live/api.stojek.art/fullchain.pem"
       ),
     };
   } else {
