@@ -9,12 +9,8 @@ import cookie from "cookie";
 const getHttpsConfig = () => {
   if (process.env.NODE_ENV === "production") {
     return {
-      key: fs.readFileSync(
-        "/etc/letsencrypt/archive/api.stojek.art/privkey1.pem"
-      ),
-      cert: fs.readFileSync(
-        "/etc/letsencrypt/archive/api.stojek.art/fullchain1.pem"
-      ),
+      key: process.env.KEY_PATH,
+      cert: process.env.CERT_PATH,
     };
   } else {
     const baseFolder =
