@@ -68,7 +68,7 @@ builder.WebHost.ConfigureKestrel(options =>
 {
     options.ListenAnyIP(5001, listenOptions =>
     {
-        listenOptions.UseHttps("/certs/fullchain1.pem", "/certs/privkey1.pem");
+        listenOptions.UseHttps("/certs/fullchain1.pem", "/certs/privkey1_rsa.pem");
     });
 });
 
