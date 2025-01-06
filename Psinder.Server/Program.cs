@@ -64,14 +64,6 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<PsinderDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(5001, listenOptions =>
-    {
-        listenOptions.UseHttps("/certs/fullchain1.pem", "/certs/privkey1_rsa.pem");
-    });
-});
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
