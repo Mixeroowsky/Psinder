@@ -65,7 +65,7 @@ export default defineConfig({
       "^/api": {
         target:
           process.env.NODE_ENV === "production"
-            ? "https://api.stojek.art"
+            ? "https://stojek.art"
             : "https://localhost:7290",
         secure: false,
         changeOrigin: true,
