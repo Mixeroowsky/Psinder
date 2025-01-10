@@ -42,7 +42,8 @@ const Register = () => {
     try {
       await api.register(values.username, values.email, values.password);
     } catch (err: any) {
-      setError(err.message);
+      setError("User already exists");
+      return;
     }
     await login(values.email, values.password);
     navigate("/");

@@ -40,6 +40,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       await api.logout();
       setIsAuthenticated(false);
+      setUserId(null);
     } catch {}
   };
 
@@ -52,9 +53,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       } catch {
         setIsAuthenticated(false);
       }
+
+      console.log(userId);
     };
     checkAuth();
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <AuthContext.Provider

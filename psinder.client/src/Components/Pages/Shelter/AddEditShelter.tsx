@@ -90,6 +90,7 @@ const AddEditShelter = () => {
   }, [id]);
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log(userId);
     if (userId != null) {
       const shelter: Shelter = {
         name: values.name,
@@ -117,11 +118,11 @@ const AddEditShelter = () => {
           setMessage("Shelter successfully registered");
           navigate("/");
         } catch (err: any) {
-          setMessage(err.message);
+          setMessage("Shelter by this name already exists");
         }
       }
     } else {
-      setMessage("Error while adding a shelter - user not logged in");
+      alert("Error while adding a shelter - user not logged in");
     }
   };
   const deleteShelter = async () => {

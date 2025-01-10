@@ -26,6 +26,11 @@ namespace Psinder.Server.Services
             var shelters = await _context.Shelters.ToListAsync();
             return _mapper.Map<List<ShelterDto>>(shelters);
         }
+        public async Task<ShelterDto> GetShelterByName(string name)
+        {
+            var shelter = await _context.Shelters.FirstOrDefaultAsync(p => p.Name == name);
+            return _mapper.Map<ShelterDto>(shelter);
+        }
         public async Task<ShelterDto> AddShelter(ShelterDto model)
         {
             var shelter = _mapper.Map<Shelter>(model);

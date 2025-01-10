@@ -44,6 +44,11 @@ namespace Psinder.Server.Controllers
                 {
                     return BadRequest();
                 }
+                var existingShelter = await _shelterService.GetShelterByName(shelter.Name);
+                if (existingShelter != null)
+                {
+                    return BadRequest("Shelter by this name already exists");
+                }
                 var result = await _shelterService.AddShelter(shelter);
 
                 return CreatedAtAction(nameof(GetShelterById), new { id = result.Id }, result);
