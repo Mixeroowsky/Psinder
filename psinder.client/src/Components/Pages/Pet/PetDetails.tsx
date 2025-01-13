@@ -93,7 +93,7 @@ const PetDetails = () => {
         <CardHeader className="flex flex-col items-center text-center">
           {pet.photoUrl ? (
             <img
-              src={`https://localhost:7290/uploads/${pet.photoUrl}`}
+              src={`https://stojek.art/uploads/${pet.photoUrl}`}
               alt={pet.name}
               className="max-w-sm w-24 h-24 sm:w-32 sm:h-32 md:w-32 md:h-32 object-cover "
             />

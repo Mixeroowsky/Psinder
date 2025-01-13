@@ -44,7 +44,7 @@ const Home = () => {
                   <div className="text-center rounded-md border transform -translate-y-10 mr-6">
                     {pets.photoUrl ? (
                       <img
-                        src={`https://localhost:7290/uploads/${pets.photoUrl}`}
+                        src={`https://stojek.art/uploads/${pets.photoUrl}`}
                         alt={pets.name}
                         className="max-w-sm w-24 h-24 sm:w-32 sm:h-32 md:w-32 md:h-32 object-cover "
                       />
