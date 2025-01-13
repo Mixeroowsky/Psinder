@@ -88,7 +88,7 @@ const Pets = () => {
                   <div className="text-center  mr-10 rounded-md p-3 border transform -mt-10">
                     {pet.photoUrl ? (
                       <img
-                        src={`https://stojek.art/Uploads/${pet.photoUrl}`}
+                        src={`https://stojek.art/uploads/${pet.photoUrl}`}
                         alt={pet.name}
                         className="max-w-sm  w-24 h-24 sm:w-32 sm:h-32 md:w-64 md:h-64 object-cover"
                       />
