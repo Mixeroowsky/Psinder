@@ -16,7 +16,7 @@ namespace Psinder.Server.Services
                 throw new ArgumentNullException(nameof(fileNameWithExtension));
             }
             var contentPath = environment.ContentRootPath;
-            var path = Path.Combine(contentPath, $"Uploads", fileNameWithExtension);
+            var path = Path.Combine(contentPath, $"uploads", fileNameWithExtension);
 
             if (!File.Exists(path))
             {
@@ -33,7 +33,7 @@ namespace Psinder.Server.Services
             }
 
             var contentPath = environment.ContentRootPath;
-            var path = Path.Combine(contentPath, "Uploads");
+            var path = Path.Combine(contentPath, "uploads");
 
             if (!Directory.Exists(path))
             {
